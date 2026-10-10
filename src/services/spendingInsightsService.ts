@@ -15,6 +15,8 @@ import type {
 } from '../types/transactions';
 import { getJson } from './httpClient';
 
+export const DASHBOARD_CUSTOMER_ID = '12345';
+
 function customerPath(customerId: string): string {
   return `/customers/${encodeURIComponent(customerId)}`;
 }

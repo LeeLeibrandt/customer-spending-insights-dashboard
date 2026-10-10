@@ -1,18 +1,32 @@
-import { screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
-import { renderWithTheme } from '../renderWithTheme';
+import { fireEvent, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
+import { createHandlers } from '../../mocks/handlers';
+import { renderWithTheme } from '../renderWithTheme';
+import { server } from '../server';
 
 describe('App', () => {
-  it('renders the dashboard heading inside the main landmark', () => {
+  beforeEach(() => {
+    server.use(...createHandlers('2024-09-16'));
+  });
+
+  it('shows the customer and switches views from the navigation', async () => {
     renderWithTheme(<App />);
 
-    const main = screen.getByRole('main');
-    const heading = screen.getByRole('heading', {
-      level: 1,
-      name: 'Customer Spending Insights',
-    });
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Spending insights' }),
+    ).toBeInTheDocument();
+    expect(await screen.findByText('John Doe')).toBeInTheDocument();
 
-    expect(main).toContainElement(heading);
+    fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Transactions' }));
+
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+        name: 'Transactions',
+        hidden: true,
+      }),
+    ).toBeInTheDocument();
   });
 });

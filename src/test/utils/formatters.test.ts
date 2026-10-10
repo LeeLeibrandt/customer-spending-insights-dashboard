@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   formatCurrency,
   formatDate,
+  formatInitials,
   formatMonth,
   formatPercentage,
   formatPercentageChange,
@@ -43,5 +44,12 @@ describe('formatDate', () => {
 describe('formatMonth', () => {
   it('formats a calendar month', () => {
     expect(formatMonth('2024-06')).toBe('Jun 2024');
+  });
+});
+
+describe('formatInitials', () => {
+  it('uses the first letters of the first two names', () => {
+    expect(formatInitials('John Doe')).toBe('JD');
+    expect(formatInitials('nomsa  dlamini mokoena')).toBe('ND');
   });
 });
