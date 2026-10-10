@@ -18,6 +18,14 @@ npm run dev
 
 Open the local URL printed by Vite, usually `http://localhost:5173`.
 
+## Test
+
+```bash
+npm test
+```
+
+Tests use Vitest, React Testing Library, and jsdom. Use `npm run test:watch` to rerun tests while you edit files. Test setup and shared helpers are in `src/test/`.
+
 ## Build and check
 
 ```bash
@@ -26,8 +34,6 @@ npm run lint
 npm run format:check
 npm run build
 ```
-
-Automated feature tests will be added with the dashboard features. There is no test command yet.
 
 ## Run with Docker
 
