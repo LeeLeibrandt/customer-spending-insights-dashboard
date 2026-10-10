@@ -52,3 +52,8 @@ export interface MonthlySpendingTrend {
 export interface SpendingTrendsResponse {
   trends: MonthlySpendingTrend[];
 }
+
+export interface SpendingTotals {
+  amount: number;
+  transactionCount: number;
+}
