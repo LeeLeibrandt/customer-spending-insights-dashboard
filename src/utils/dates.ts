@@ -20,7 +20,7 @@ export function isIsoDate(value: string): boolean {
   return !Number.isNaN(date.getTime()) && toIsoDate(date) === value;
 }
 
-export function parseIsoDate(isoDate: string): Date {
+function parseIsoDate(isoDate: string): Date {
   if (!isIsoDate(isoDate)) {
     throw new RangeError(`"${isoDate}" is not a valid YYYY-MM-DD date.`);
   }
