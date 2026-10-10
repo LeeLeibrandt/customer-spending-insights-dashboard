@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { renderWithTheme } from '../test/renderWithTheme';
-import { App } from './App';
+import { renderWithTheme } from '../renderWithTheme';
+import { App } from '../../app/App';
 
 describe('App', () => {
   it('renders the dashboard heading inside the main landmark', () => {
