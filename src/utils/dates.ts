@@ -70,3 +70,7 @@ export function addMonths(isoMonth: string, months: number): string {
 export function toIsoDateFromTimestamp(timestamp: string): string {
   return toIsoDate(new Date(timestamp));
 }
+
+export function getTodayIsoDate(): string {
+  return toIsoDate(new Date());
+}

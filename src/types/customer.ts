@@ -9,3 +9,5 @@ export interface CustomerProfile {
   totalSpent: number;
   currency: string;
 }
+
+export type CustomerRecord = Omit<CustomerProfile, 'totalSpent'>;

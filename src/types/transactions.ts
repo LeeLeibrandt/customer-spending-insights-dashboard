@@ -36,3 +36,12 @@ export interface TransactionsResponse {
   transactions: Transaction[];
   pagination: Pagination;
 }
+
+export interface MockTransactionRecord {
+  daysAgo: number;
+  merchant: string;
+  category: string;
+  amount: number;
+  description: string;
+  paymentMethod: PaymentMethod;
+}
