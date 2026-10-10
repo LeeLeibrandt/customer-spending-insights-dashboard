@@ -37,3 +37,11 @@ export enum GoalStatus {
   Warning = 'warning',
   Exceeded = 'exceeded',
 }
+
+export enum DashboardView {
+  Overview = 'overview',
+  Categories = 'categories',
+  Trends = 'trends',
+  Transactions = 'transactions',
+  Goals = 'goals',
+}

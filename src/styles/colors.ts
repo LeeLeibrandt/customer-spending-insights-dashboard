@@ -16,14 +16,17 @@ export const colors = {
   brand: {
     blue: '#00486d',
     red: '#e63934',
+    redStrong: '#cf2a26',
+    redTint: '#fdeeed',
   },
   background: {
-    page: '#f4f8fa',
+    page: '#f8f8f9',
     surface: '#ffffff',
   },
+  border: '#e6e9ee',
   text: {
-    primary: '#172b38',
-    secondary: '#425767',
-    onRed: '#000000',
+    primary: '#1c2434',
+    secondary: '#5b6675',
+    onRed: '#ffffff',
   },
 } as const;

@@ -4,14 +4,14 @@ import { colors } from './colors';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: colors.brand.blue,
-    },
-    secondary: {
-      main: colors.brand.red,
+      main: colors.brand.redStrong,
       contrastText: colors.text.onRed,
     },
+    secondary: {
+      main: colors.brand.blue,
+    },
     background: {
-      default: colors.background.page,
+      default: colors.background.surface,
       paper: colors.background.surface,
     },
     text: {
@@ -23,6 +23,11 @@ export const theme = createTheme({
     borderRadius: 12,
   },
   typography: {
-    fontFamily: 'Arial, Helvetica, sans-serif',
+    fontFamily: '"Instrument Sans", Arial, Helvetica, sans-serif',
+    h1: {
+      fontSize: '1.75rem',
+      fontWeight: 600,
+      letterSpacing: '-0.01em',
+    },
   },
 });

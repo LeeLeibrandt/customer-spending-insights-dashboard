@@ -33,6 +33,15 @@ export function formatDate(isoDate: string): string {
   }).format(new Date(`${isoDate}T00:00:00Z`));
 }
 
+export function formatInitials(name: string): string {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join('');
+}
+
 export function formatMonth(isoMonth: string): string {
   return new Intl.DateTimeFormat(LOCALE, {
     month: 'short',
