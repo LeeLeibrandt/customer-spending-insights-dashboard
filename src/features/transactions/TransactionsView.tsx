@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { ChangeEvent } from 'react';
 import SortOutlined from '@mui/icons-material/SortOutlined';
 import { TablePagination, Typography } from '@mui/material';
@@ -8,30 +8,58 @@ import { SectionCard } from '../../components/SectionCard';
 import { SelectField } from '../../components/SelectField';
 import { TransactionsTable } from '../../components/TransactionsTable';
 import { useApiRequest } from '../../hooks/useApiRequest';
+import { useFilters } from '../../hooks/useFilters';
 import {
   DASHBOARD_CUSTOMER_ID,
   getTransactions,
 } from '../../services/spendingInsightsService';
+import type { DateRange } from '../../types/common';
 import type { ViewProps } from '../../types/components';
 import { TransactionSortOrder } from '../../types/enums';
+import { isDateRangeReversed } from '../../utils/periods';
 import { SORT_OPTIONS } from './sortOptions';
+import { TransactionFilters } from './TransactionFilters';
 
 const DEFAULT_PAGE_SIZE = 20;
 const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
+const ALL_CATEGORIES = '';
+const EMPTY_DATE_RANGE: DateRange = { startDate: '', endDate: '' };
 
 export function TransactionsView({ title, description }: ViewProps) {
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [sortBy, setSortBy] = useState(TransactionSortOrder.DateDesc);
+  const [category, setCategory] = useState(ALL_CATEGORIES);
+  const [dateRange, setDateRange] = useState(EMPTY_DATE_RANGE);
+  const [appliedDateRange, setAppliedDateRange] = useState(EMPTY_DATE_RANGE);
+  const { data: filters } = useFilters();
+
+  const categoryOptions = useMemo(
+    () => [
+      { value: ALL_CATEGORIES, label: 'All categories' },
+      ...(filters?.categories ?? []).map(({ name }) => ({
+        value: name,
+        label: name,
+      })),
+    ],
+    [filters],
+  );
 
   const requestTransactions = useCallback(
     (signal: AbortSignal) =>
       getTransactions(
         DASHBOARD_CUSTOMER_ID,
-        { limit: pageSize, offset: page * pageSize, sortBy },
+        {
+          limit: pageSize,
+          offset: page * pageSize,
+          sortBy,
+          category: category || undefined,
+          startDate: appliedDateRange.startDate || undefined,
+          endDate: appliedDateRange.endDate || undefined,
+        },
         signal,
       ),
-    [page, pageSize, sortBy],
+    [page, pageSize, sortBy, category, appliedDateRange],
   );
   const result = useApiRequest(requestTransactions);
 
@@ -46,51 +74,71 @@ export function TransactionsView({ title, description }: ViewProps) {
     },
     [],
   );
-
   const handleSortChange = useCallback((nextSortBy: TransactionSortOrder) => {
     setSortBy(nextSortBy);
     setPage(0);
+  }, []);
+  const handleCategoryChange = useCallback((nextCategory: string) => {
+    setCategory(nextCategory);
+    setPage(0);
+  }, []);
+  const handleDateRangeChange = useCallback((nextDateRange: DateRange) => {
+    setDateRange(nextDateRange);
+
+    if (!isDateRangeReversed(nextDateRange)) {
+      setAppliedDateRange(nextDateRange);
+      setPage(0);
+    }
   }, []);
 
   return (
     <>
       <PageHeader title={title} description={description} />
-      <RequestContent
-        result={result}
-        errorMessage="Your transactions could not be loaded."
+      <SectionCard
+        title="All transactions"
+        action={
+          <SelectField
+            label="Sort by"
+            value={sortBy}
+            options={SORT_OPTIONS}
+            onChange={handleSortChange}
+            icon={SortOutlined}
+          />
+        }
       >
-        {(data) => (
-          <SectionCard
-            title="All transactions"
-            action={
-              <SelectField
-                label="Sort by"
-                value={sortBy}
-                options={SORT_OPTIONS}
-                onChange={handleSortChange}
-                icon={SortOutlined}
+        <TransactionFilters
+          categoryOptions={categoryOptions}
+          category={category}
+          onCategoryChange={handleCategoryChange}
+          dateRange={dateRange}
+          onDateRangeChange={handleDateRangeChange}
+        />
+        <RequestContent
+          result={result}
+          errorMessage="Your transactions could not be loaded."
+        >
+          {(data) => (
+            <>
+              {data.transactions.length === 0 ? (
+                <Typography variant="body2" color="text.secondary">
+                  No transactions match these filters.
+                </Typography>
+              ) : (
+                <TransactionsTable transactions={data.transactions} />
+              )}
+              <TablePagination
+                component="div"
+                count={data.pagination.total}
+                page={page}
+                rowsPerPage={pageSize}
+                rowsPerPageOptions={PAGE_SIZE_OPTIONS}
+                onPageChange={handlePageChange}
+                onRowsPerPageChange={handlePageSizeChange}
               />
-            }
-          >
-            {data.transactions.length === 0 ? (
-              <Typography variant="body2" color="text.secondary">
-                No transactions found.
-              </Typography>
-            ) : (
-              <TransactionsTable transactions={data.transactions} />
-            )}
-            <TablePagination
-              component="div"
-              count={data.pagination.total}
-              page={page}
-              rowsPerPage={pageSize}
-              rowsPerPageOptions={PAGE_SIZE_OPTIONS}
-              onPageChange={handlePageChange}
-              onRowsPerPageChange={handlePageSizeChange}
-            />
-          </SectionCard>
-        )}
-      </RequestContent>
+            </>
+          )}
+        </RequestContent>
+      </SectionCard>
     </>
   );
 }

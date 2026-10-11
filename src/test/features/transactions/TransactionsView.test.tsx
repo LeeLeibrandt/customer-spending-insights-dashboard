@@ -50,4 +50,38 @@ describe('TransactionsView', () => {
       ).toBe(true),
     );
   });
+
+  it('filters transactions by category', async () => {
+    renderWithTheme(
+      <TransactionsView title="Transactions" description="All of them" />,
+    );
+
+    await selectOption('Category', 'Groceries');
+
+    await waitFor(() =>
+      expect(
+        recorder.urls.some((url) => url.includes('category=Groceries')),
+      ).toBe(true),
+    );
+  });
+
+  it('explains a reversed date range instead of sending it', async () => {
+    renderWithTheme(
+      <TransactionsView title="Transactions" description="All of them" />,
+    );
+
+    fireEvent.change(await screen.findByLabelText('From'), {
+      target: { value: '2024-09-10' },
+    });
+    fireEvent.change(screen.getByLabelText('To'), {
+      target: { value: '2024-09-01' },
+    });
+
+    expect(
+      screen.getByText('Choose a start date on or before the end date.'),
+    ).toBeInTheDocument();
+    expect(
+      recorder.urls.some((url) => url.includes('endDate=2024-09-01')),
+    ).toBe(false);
+  });
 });

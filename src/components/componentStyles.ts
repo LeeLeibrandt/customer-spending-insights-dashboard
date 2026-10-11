@@ -53,6 +53,14 @@ export const componentStyles = {
   selectField: {
     minWidth: 200,
   },
+  dateRangeFields: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 2,
+  },
+  dateField: {
+    minWidth: 170,
+  },
   selectFieldIcon: {
     color: 'text.secondary',
   },

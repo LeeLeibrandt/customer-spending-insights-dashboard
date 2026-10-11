@@ -39,3 +39,11 @@ export function isValidDateRange(range: DateRange): boolean {
     range.startDate <= range.endDate
   );
 }
+
+export function isDateRangeReversed(range: DateRange): boolean {
+  return (
+    range.startDate !== '' &&
+    range.endDate !== '' &&
+    range.startDate > range.endDate
+  );
+}

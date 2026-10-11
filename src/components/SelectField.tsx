@@ -19,6 +19,8 @@ function SelectFieldBase<T extends string>({
       onChange={(event) => onChange(event.target.value as T)}
       sx={componentStyles.selectField}
       slotProps={{
+        select: { displayEmpty: true },
+        inputLabel: { shrink: true },
         input: {
           startAdornment: Icon && (
             <InputAdornment position="start">

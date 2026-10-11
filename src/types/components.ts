@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
 import type { CategoryIcon, DashboardView, Period } from './enums';
 import type { ApiRequestResult } from './apiRequest';
+import type { DateRange } from './common';
 import type { CustomerProfile } from './customer';
 import type { CategorySpending, MonthlySpendingTrend } from './spending';
 import type { Transaction } from './transactions';
@@ -125,4 +126,17 @@ export interface RequestContentProps<T> {
 
 export interface CustomerProfileDetailsProps {
   profile: CustomerProfile;
+}
+
+export interface DateRangeFieldsProps {
+  value: DateRange;
+  onChange: (value: DateRange) => void;
+}
+
+export interface TransactionFiltersProps {
+  categoryOptions: SelectOption<string>[];
+  category: string;
+  onCategoryChange: (category: string) => void;
+  dateRange: DateRange;
+  onDateRangeChange: (dateRange: DateRange) => void;
 }
