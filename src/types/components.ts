@@ -1,9 +1,16 @@
 import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
-import type { CategoryIcon, DashboardView, Period } from './enums';
-import type { DateRangePreset } from './filters';
+import type { SpendingCategory } from './categories';
+import type { CategoryIcon, DashboardView, GoalStatus, Period } from './enums';
+import type { SpendingGoal } from './goals';
+import type { ApiRequestResult } from './apiRequest';
+import type { DateRange } from './common';
 import type { CustomerProfile } from './customer';
-import type { CategorySpending, MonthlySpendingTrend } from './spending';
+import type {
+  CategorySpending,
+  CategorySpendingQuery,
+  MonthlySpendingTrend,
+} from './spending';
 import type { Transaction } from './transactions';
 
 export interface NavigationItem {
@@ -52,10 +59,17 @@ export interface SpendingSummaryCardsProps {
   period: Period;
 }
 
-export interface PeriodSelectProps {
-  value: Period;
-  presets: DateRangePreset[];
-  onChange: (period: Period) => void;
+export interface SelectOption<T extends string> {
+  value: T;
+  label: string;
+}
+
+export interface SelectFieldProps<T extends string> {
+  label: string;
+  value: T;
+  options: SelectOption<T>[];
+  onChange: (value: T) => void;
+  icon?: SvgIconComponent;
 }
 
 export interface ViewProps {
@@ -81,7 +95,7 @@ export interface CategoryIconProps {
 }
 
 export interface CategorySpendingCardProps {
-  period: Period;
+  query: CategorySpendingQuery;
 }
 
 export interface CategorySpendingRowProps {
@@ -90,6 +104,15 @@ export interface CategorySpendingRowProps {
 
 export interface MonthlySpendingProps {
   trends: MonthlySpendingTrend[];
+}
+
+export interface MonthlySpendingTableProps extends MonthlySpendingProps {
+  isVisible?: boolean;
+}
+
+export interface MonthlySpendingCardProps {
+  months: number;
+  showTable?: boolean;
 }
 
 export interface OverviewViewProps extends ViewProps {
@@ -104,6 +127,52 @@ export interface TransactionRowProps {
   transaction: Transaction;
 }
 
+export interface TransactionsTableProps {
+  transactions: Transaction[];
+}
+
+export interface RequestContentProps<T> {
+  result: ApiRequestResult<T>;
+  errorMessage: string;
+  skeletonHeight?: number;
+  loadingFallback?: ReactNode;
+  children: (data: T) => ReactNode;
+}
+
 export interface CustomerProfileDetailsProps {
   profile: CustomerProfile;
+}
+
+export interface DateRangeFieldsProps {
+  value: DateRange;
+  onChange: (value: DateRange) => void;
+}
+
+export interface TransactionFiltersProps {
+  categoryOptions: SelectOption<string>[];
+  category: string;
+  onCategoryChange: (category: string) => void;
+  dateRange: DateRange;
+  onDateRangeChange: (dateRange: DateRange) => void;
+}
+
+export interface ProgressBarProps {
+  value: number;
+  color: string;
+}
+
+export interface GoalStatusLabelProps {
+  status: GoalStatus;
+}
+
+export interface GoalCardProps {
+  goal: SpendingGoal;
+  category?: SpendingCategory;
+}
+
+export interface GoalStatusDetails {
+  label: string;
+  icon: SvgIconComponent;
+  color: string;
+  tint: string;
 }

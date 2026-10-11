@@ -1,22 +1,17 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { PageHeader } from '../../components/layout/PageHeader';
-import { PeriodSelect } from '../../components/PeriodSelect';
-import { useApiRequest } from '../../hooks/useApiRequest';
-import {
-  DASHBOARD_CUSTOMER_ID,
-  getFilters,
-} from '../../services/spendingInsightsService';
+import CalendarTodayOutlined from '@mui/icons-material/CalendarTodayOutlined';
+import { SelectField } from '../../components/SelectField';
+import { useFilters } from '../../hooks/useFilters';
 import type { OverviewViewProps } from '../../types/components';
 import { DEFAULT_PERIOD } from '../../utils/periods';
-import { CategorySpendingCard } from './CategorySpendingCard';
-import { MonthlySpendingCard } from './MonthlySpendingCard';
+import { CategorySpendingCard } from '../spending/CategorySpendingCard';
+import { MonthlySpendingCard } from '../spending/MonthlySpendingCard';
+import { DEFAULT_TREND_MONTHS } from '../spending/monthOptions';
 import { overviewStyles } from './overviewStyles';
 import { RecentTransactionsCard } from './RecentTransactionsCard';
 import { SpendingSummaryCards } from './SpendingSummaryCards';
-
-const requestFilters = (signal: AbortSignal) =>
-  getFilters(DASHBOARD_CUSTOMER_ID, signal);
 
 export function OverviewView({
   title,
@@ -24,7 +19,8 @@ export function OverviewView({
   onViewTransactions,
 }: OverviewViewProps) {
   const [period, setPeriod] = useState(DEFAULT_PERIOD);
-  const { data: filters } = useApiRequest(requestFilters);
+  const { data: filters } = useFilters();
+  const categoryQuery = useMemo(() => ({ period }), [period]);
 
   return (
     <>
@@ -33,19 +29,23 @@ export function OverviewView({
         description={description}
         action={
           filters && (
-            <PeriodSelect
+            <SelectField
+              label="Period"
               value={period}
-              presets={filters.dateRangePresets}
+              options={filters.dateRangePresets}
               onChange={setPeriod}
+              icon={CalendarTodayOutlined}
             />
           )
         }
       />
       <SpendingSummaryCards period={period} />
       <Box sx={overviewStyles.contentGrid}>
-        <MonthlySpendingCard />
-        <CategorySpendingCard period={period} />
-        <RecentTransactionsCard onViewAll={onViewTransactions} />
+        <MonthlySpendingCard months={DEFAULT_TREND_MONTHS} />
+        <CategorySpendingCard query={categoryQuery} />
+        <Box sx={overviewStyles.fullWidth}>
+          <RecentTransactionsCard onViewAll={onViewTransactions} />
+        </Box>
       </Box>
     </>
   );

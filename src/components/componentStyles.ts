@@ -50,10 +50,28 @@ export const componentStyles = {
   changeDecrease: {
     color: colors.success,
   },
-  periodSelect: {
+  selectField: {
     minWidth: 200,
   },
-  periodSelectIcon: {
+  filterBar: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    gap: 2,
+  },
+  dateRangeFields: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 2,
+  },
+  clearDatesButton: {
+    height: 40,
+    whiteSpace: 'nowrap',
+  },
+  dateField: {
+    minWidth: 170,
+  },
+  selectFieldIcon: {
     color: 'text.secondary',
   },
   sectionCard: {
@@ -82,5 +100,55 @@ export const componentStyles = {
     height: 32,
     borderRadius: 2,
     bgcolor: colors.iconSurface,
+  },
+  progressTrack: {
+    height: 6,
+    my: 0.75,
+    borderRadius: 3,
+    bgcolor: 'action.hover',
+    overflow: 'hidden',
+  },
+  progressBar: {
+    height: '100%',
+    borderRadius: 3,
+  },
+  skeleton: {
+    borderRadius: 3,
+  },
+  visuallyHidden: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
+    p: 0,
+    m: -1,
+    overflow: 'hidden',
+    clip: 'rect(0 0 0 0)',
+    whiteSpace: 'nowrap',
+    border: 0,
+  },
+  tableContainer: {
+    overflowX: 'auto',
+  },
+  tableHeadCell: {
+    color: 'text.secondary',
+    fontWeight: 500,
+    whiteSpace: 'nowrap',
+  },
+  merchantCell: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1.5,
+    minWidth: 180,
+  },
+  merchantName: {
+    fontWeight: 500,
+  },
+  amountCell: {
+    fontWeight: 600,
+    fontVariantNumeric: 'tabular-nums',
+    whiteSpace: 'nowrap',
+  },
+  noWrap: {
+    whiteSpace: 'nowrap',
   },
 } satisfies Record<string, SxProps<Theme>>;

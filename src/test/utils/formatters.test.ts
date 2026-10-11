@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  formatCount,
   formatCurrency,
   formatDate,
   formatInitials,
@@ -51,5 +52,13 @@ describe('formatInitials', () => {
   it('uses the first letters of the first two names', () => {
     expect(formatInitials('John Doe')).toBe('JD');
     expect(formatInitials('nomsa  dlamini mokoena')).toBe('ND');
+  });
+});
+
+describe('formatCount', () => {
+  it('uses the singular only for one', () => {
+    expect(formatCount(1, 'transaction')).toBe('1 transaction');
+    expect(formatCount(15, 'transaction')).toBe('15 transactions');
+    expect(formatCount(0, 'day')).toBe('0 days');
   });
 });

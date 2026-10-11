@@ -1,8 +1,11 @@
 import { useCallback, useState } from 'react';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { NAVIGATION_ITEMS } from '../components/layout/navigationItems';
-import { PageHeader } from '../components/layout/PageHeader';
+import { CategoriesView } from '../features/categories/CategoriesView';
+import { GoalsView } from '../features/goals/GoalsView';
 import { OverviewView } from '../features/overview/OverviewView';
+import { TransactionsView } from '../features/transactions/TransactionsView';
+import { TrendsView } from '../features/trends/TrendsView';
 import { DashboardView } from '../types/enums';
 
 export function App() {
@@ -13,21 +16,35 @@ export function App() {
     [],
   );
 
+  const renderView = () => {
+    if (!activeItem) {
+      return null;
+    }
+
+    const viewProps = {
+      title: activeItem.label,
+      description: activeItem.description,
+    };
+
+    switch (activeView) {
+      case DashboardView.Overview:
+        return (
+          <OverviewView {...viewProps} onViewTransactions={showTransactions} />
+        );
+      case DashboardView.Categories:
+        return <CategoriesView {...viewProps} />;
+      case DashboardView.Trends:
+        return <TrendsView {...viewProps} />;
+      case DashboardView.Transactions:
+        return <TransactionsView {...viewProps} />;
+      case DashboardView.Goals:
+        return <GoalsView {...viewProps} />;
+    }
+  };
+
   return (
     <DashboardLayout activeView={activeView} onSelectView={setActiveView}>
-      {activeItem &&
-        (activeView === DashboardView.Overview ? (
-          <OverviewView
-            title={activeItem.label}
-            description={activeItem.description}
-            onViewTransactions={showTransactions}
-          />
-        ) : (
-          <PageHeader
-            title={activeItem.label}
-            description={activeItem.description}
-          />
-        ))}
+      {renderView()}
     </DashboardLayout>
   );
 }

@@ -1,42 +1,35 @@
 import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { CategoryIcon } from '../../components/CategoryIcon';
+import { ProgressBar } from '../../components/ProgressBar';
 import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
 import type { CategorySpendingRowProps } from '../../types/components';
-import { formatCurrency, formatPercentage } from '../../utils/formatters';
-import { overviewStyles } from './overviewStyles';
+import {
+  formatCount,
+  formatCurrency,
+  formatPercentage,
+} from '../../utils/formatters';
+import { spendingStyles } from './spendingStyles';
 
 export const CategorySpendingRow = memo(function CategorySpendingRow({
   category,
 }: CategorySpendingRowProps) {
   return (
-    <Box component="li" sx={overviewStyles.categoryRow}>
+    <Box component="li" sx={spendingStyles.categoryRow}>
       <CategoryIcon icon={category.icon} color={category.color} />
-      <Box sx={overviewStyles.categoryDetails}>
-        <Box sx={overviewStyles.categoryHeading}>
-          <Typography variant="body2" sx={overviewStyles.categoryName}>
+      <Box sx={spendingStyles.categoryDetails}>
+        <Box sx={spendingStyles.categoryHeading}>
+          <Typography variant="body2" sx={spendingStyles.categoryName}>
             {category.name}
           </Typography>
-          <Typography variant="body2" sx={overviewStyles.categoryAmount}>
+          <Typography variant="body2" sx={spendingStyles.categoryAmount}>
             {formatCurrency(category.amount, DASHBOARD_CURRENCY)}
           </Typography>
         </Box>
-        <Box sx={overviewStyles.categoryBarTrack}>
-          <Box
-            sx={[
-              overviewStyles.categoryBar,
-              {
-                width: `${category.percentage}%`,
-                bgcolor: category.color,
-              },
-            ]}
-          />
-        </Box>
-        <Box sx={overviewStyles.categoryMeta}>
+        <ProgressBar value={category.percentage} color={category.color} />
+        <Box sx={spendingStyles.categoryMeta}>
           <Typography variant="caption" color="text.secondary">
-            {category.transactionCount === 1
-              ? '1 transaction'
-              : `${category.transactionCount} transactions`}
+            {formatCount(category.transactionCount, 'transaction')}
           </Typography>
           <Typography variant="caption" color="text.secondary">
             {formatPercentage(category.percentage)}
