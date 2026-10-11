@@ -64,6 +64,10 @@ export const componentStyles = {
     flexWrap: 'wrap',
     gap: 2,
   },
+  clearDatesButton: {
+    height: 40,
+    whiteSpace: 'nowrap',
+  },
   dateField: {
     minWidth: 170,
   },

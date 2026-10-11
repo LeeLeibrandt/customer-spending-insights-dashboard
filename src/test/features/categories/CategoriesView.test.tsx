@@ -27,6 +27,9 @@ describe('CategoriesView', () => {
       name: 'Spending by category',
     });
     expect(within(card).getByText('Groceries')).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Clear dates' }),
+    ).not.toBeInTheDocument();
 
     fireEvent.change(screen.getByLabelText('From'), {
       target: { value: '2024-08-01' },
@@ -44,6 +47,15 @@ describe('CategoriesView', () => {
     );
     expect(
       screen.getByText(/Showing your custom date range/),
+    ).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Clear dates' }));
+
+    expect(screen.getByLabelText('From')).toHaveValue('');
+    expect(
+      screen.getByText(
+        'Choose a period, or set both dates for a custom range.',
+      ),
     ).toBeInTheDocument();
   });
 });

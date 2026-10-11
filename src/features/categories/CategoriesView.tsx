@@ -45,7 +45,7 @@ export function CategoriesView({ title, description }: ViewProps) {
         sx={categoriesStyles.rangeNote}
       >
         {hasCustomRange
-          ? 'Showing your custom date range. Clear both dates to use the period again.'
+          ? 'Showing your custom date range. Clear the dates to use the period again.'
           : 'Choose a period, or set both dates for a custom range.'}
       </Typography>
       <CategorySpendingCard query={query} />

@@ -1,16 +1,19 @@
 import { memo } from 'react';
-import { Box, TextField } from '@mui/material';
+import ClearOutlined from '@mui/icons-material/ClearOutlined';
+import { Box, Button, TextField } from '@mui/material';
 import type { DateRangeFieldsProps } from '../types/components';
 import { isDateRangeReversed } from '../utils/periods';
 import { componentStyles } from './componentStyles';
 
 const RANGE_ERROR = 'Choose a start date on or before the end date.';
+const EMPTY_DATE_RANGE = { startDate: '', endDate: '' };
 
 export const DateRangeFields = memo(function DateRangeFields({
   value,
   onChange,
 }: DateRangeFieldsProps) {
   const hasError = isDateRangeReversed(value);
+  const hasDates = value.startDate !== '' || value.endDate !== '';
 
   return (
     <Box sx={componentStyles.dateRangeFields}>
@@ -45,6 +48,16 @@ export const DateRangeFields = memo(function DateRangeFields({
           htmlInput: { min: value.startDate || undefined },
         }}
       />
+      {hasDates && (
+        <Button
+          variant="outlined"
+          startIcon={<ClearOutlined />}
+          onClick={() => onChange(EMPTY_DATE_RANGE)}
+          sx={componentStyles.clearDatesButton}
+        >
+          Clear dates
+        </Button>
+      )}
     </Box>
   );
 });
