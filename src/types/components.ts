@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
 import type { DashboardView, Period } from './enums';
+import type { DateRangePreset } from './filters';
 
 export interface NavigationItem {
   view: DashboardView;
@@ -23,6 +24,7 @@ export interface AppSidebarProps {
 export interface PageHeaderProps {
   title: string;
   description: string;
+  action?: ReactNode;
 }
 
 export interface DashboardLayoutProps {
@@ -45,4 +47,15 @@ export interface ChangeIndicatorProps {
 
 export interface SpendingSummaryCardsProps {
   period: Period;
+}
+
+export interface PeriodSelectProps {
+  value: Period;
+  presets: DateRangePreset[];
+  onChange: (period: Period) => void;
+}
+
+export interface ViewProps {
+  title: string;
+  description: string;
 }

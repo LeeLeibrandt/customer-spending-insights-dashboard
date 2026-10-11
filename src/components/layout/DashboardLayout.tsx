@@ -5,8 +5,6 @@ import type { DashboardView } from '../../types/enums';
 import { AppHeader } from './AppHeader';
 import { AppSidebar } from './AppSidebar';
 import { layoutStyles } from './layoutStyles';
-import { NAVIGATION_ITEMS } from './navigationItems';
-import { PageHeader } from './PageHeader';
 
 export function DashboardLayout({
   activeView,
@@ -14,7 +12,6 @@ export function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
   const [isNavigationOpen, setIsNavigationOpen] = useState(false);
-  const activeItem = NAVIGATION_ITEMS.find(({ view }) => view === activeView);
 
   const openNavigation = useCallback(() => setIsNavigationOpen(true), []);
   const closeNavigation = useCallback(() => setIsNavigationOpen(false), []);
@@ -37,12 +34,6 @@ export function DashboardLayout({
       />
       <Box component="main" sx={layoutStyles.content}>
         <Box sx={layoutStyles.contentOffset} />
-        {activeItem && (
-          <PageHeader
-            title={activeItem.label}
-            description={activeItem.description}
-          />
-        )}
         {children}
       </Box>
     </Box>

@@ -1,6 +1,38 @@
+import { useState } from 'react';
+import { PageHeader } from '../../components/layout/PageHeader';
+import { PeriodSelect } from '../../components/PeriodSelect';
+import { useApiRequest } from '../../hooks/useApiRequest';
+import {
+  DASHBOARD_CUSTOMER_ID,
+  getFilters,
+} from '../../services/spendingInsightsService';
+import type { ViewProps } from '../../types/components';
 import { DEFAULT_PERIOD } from '../../utils/periods';
 import { SpendingSummaryCards } from './SpendingSummaryCards';
 
-export function OverviewView() {
-  return <SpendingSummaryCards period={DEFAULT_PERIOD} />;
+const requestFilters = (signal: AbortSignal) =>
+  getFilters(DASHBOARD_CUSTOMER_ID, signal);
+
+export function OverviewView({ title, description }: ViewProps) {
+  const [period, setPeriod] = useState(DEFAULT_PERIOD);
+  const { data: filters } = useApiRequest(requestFilters);
+
+  return (
+    <>
+      <PageHeader
+        title={title}
+        description={description}
+        action={
+          filters && (
+            <PeriodSelect
+              value={period}
+              presets={filters.dateRangePresets}
+              onChange={setPeriod}
+            />
+          )
+        }
+      />
+      <SpendingSummaryCards period={period} />
+    </>
+  );
 }

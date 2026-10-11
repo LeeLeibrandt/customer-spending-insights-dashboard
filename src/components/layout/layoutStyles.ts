@@ -104,6 +104,11 @@ export const layoutStyles = {
     minHeight: HEADER_HEIGHT,
   },
   pageHeader: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: 2,
     pt: 1,
     pb: { xs: 3, md: 4 },
   },

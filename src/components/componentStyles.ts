@@ -50,4 +50,10 @@ export const componentStyles = {
   changeDecrease: {
     color: colors.success,
   },
+  periodSelect: {
+    minWidth: 200,
+  },
+  periodSelectIcon: {
+    color: 'text.secondary',
+  },
 } satisfies Record<string, SxProps<Theme>>;
