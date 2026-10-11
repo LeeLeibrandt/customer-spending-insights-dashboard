@@ -30,6 +30,11 @@ export const layoutStyles = {
     display: 'flex',
     alignItems: 'center',
     gap: 1.5,
+    px: 1,
+    py: 0.5,
+    borderRadius: 2,
+    color: 'text.primary',
+    textTransform: 'none',
   },
   customerAvatar: {
     width: 36,
@@ -42,6 +47,27 @@ export const layoutStyles = {
   customerName: {
     fontWeight: 600,
     lineHeight: 1.2,
+  },
+  customerChevron: {
+    color: 'text.secondary',
+  },
+  profilePanel: {
+    minWidth: 240,
+    m: 0,
+    p: 2.5,
+  },
+  profileField: {
+    '&:not(:first-of-type)': {
+      mt: 1.5,
+    },
+  },
+  profileLabel: {
+    color: 'text.secondary',
+    fontSize: '0.75rem',
+  },
+  profileValue: {
+    m: 0,
+    fontWeight: 600,
   },
   sidebar: {
     width: { md: SIDEBAR_WIDTH },
@@ -104,6 +130,11 @@ export const layoutStyles = {
     minHeight: HEADER_HEIGHT,
   },
   pageHeader: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: 2,
     pt: 1,
     pb: { xs: 3, md: 4 },
   },

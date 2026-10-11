@@ -7,6 +7,14 @@ export function formatCurrency(amount: number, currency: string): string {
   }).format(amount);
 }
 
+export function formatAxisCurrency(amount: number, currency: string): string {
+  return new Intl.NumberFormat(LOCALE, {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
 export function formatPercentage(value: number): string {
   return new Intl.NumberFormat(LOCALE, {
     style: 'percent',
