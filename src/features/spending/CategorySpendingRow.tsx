@@ -8,27 +8,27 @@ import {
   formatPercentage,
   formatTransactionCount,
 } from '../../utils/formatters';
-import { overviewStyles } from './overviewStyles';
+import { spendingStyles } from './spendingStyles';
 
 export const CategorySpendingRow = memo(function CategorySpendingRow({
   category,
 }: CategorySpendingRowProps) {
   return (
-    <Box component="li" sx={overviewStyles.categoryRow}>
+    <Box component="li" sx={spendingStyles.categoryRow}>
       <CategoryIcon icon={category.icon} color={category.color} />
-      <Box sx={overviewStyles.categoryDetails}>
-        <Box sx={overviewStyles.categoryHeading}>
-          <Typography variant="body2" sx={overviewStyles.categoryName}>
+      <Box sx={spendingStyles.categoryDetails}>
+        <Box sx={spendingStyles.categoryHeading}>
+          <Typography variant="body2" sx={spendingStyles.categoryName}>
             {category.name}
           </Typography>
-          <Typography variant="body2" sx={overviewStyles.categoryAmount}>
+          <Typography variant="body2" sx={spendingStyles.categoryAmount}>
             {formatCurrency(category.amount, DASHBOARD_CURRENCY)}
           </Typography>
         </Box>
-        <Box sx={overviewStyles.categoryBarTrack}>
+        <Box sx={spendingStyles.categoryBarTrack}>
           <Box
             sx={[
-              overviewStyles.categoryBar,
+              spendingStyles.categoryBar,
               {
                 width: `${category.percentage}%`,
                 bgcolor: category.color,
@@ -36,7 +36,7 @@ export const CategorySpendingRow = memo(function CategorySpendingRow({
             ]}
           />
         </Box>
-        <Box sx={overviewStyles.categoryMeta}>
+        <Box sx={spendingStyles.categoryMeta}>
           <Typography variant="caption" color="text.secondary">
             {formatTransactionCount(category.transactionCount)}
           </Typography>

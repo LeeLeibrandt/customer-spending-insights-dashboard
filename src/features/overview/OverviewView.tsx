@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { PageHeader } from '../../components/layout/PageHeader';
 import CalendarTodayOutlined from '@mui/icons-material/CalendarTodayOutlined';
@@ -6,7 +6,7 @@ import { SelectField } from '../../components/SelectField';
 import { useFilters } from '../../hooks/useFilters';
 import type { OverviewViewProps } from '../../types/components';
 import { DEFAULT_PERIOD } from '../../utils/periods';
-import { CategorySpendingCard } from './CategorySpendingCard';
+import { CategorySpendingCard } from '../spending/CategorySpendingCard';
 import { MonthlySpendingCard } from './MonthlySpendingCard';
 import { overviewStyles } from './overviewStyles';
 import { RecentTransactionsCard } from './RecentTransactionsCard';
@@ -19,6 +19,7 @@ export function OverviewView({
 }: OverviewViewProps) {
   const [period, setPeriod] = useState(DEFAULT_PERIOD);
   const { data: filters } = useFilters();
+  const categoryQuery = useMemo(() => ({ period }), [period]);
 
   return (
     <>
@@ -40,7 +41,7 @@ export function OverviewView({
       <SpendingSummaryCards period={period} />
       <Box sx={overviewStyles.contentGrid}>
         <MonthlySpendingCard />
-        <CategorySpendingCard period={period} />
+        <CategorySpendingCard query={categoryQuery} />
         <Box sx={overviewStyles.fullWidth}>
           <RecentTransactionsCard onViewAll={onViewTransactions} />
         </Box>

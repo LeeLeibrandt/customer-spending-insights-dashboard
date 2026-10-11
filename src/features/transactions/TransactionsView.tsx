@@ -8,30 +8,29 @@ import { SectionCard } from '../../components/SectionCard';
 import { SelectField } from '../../components/SelectField';
 import { TransactionsTable } from '../../components/TransactionsTable';
 import { useApiRequest } from '../../hooks/useApiRequest';
+import { useDateRangeFilter } from '../../hooks/useDateRangeFilter';
 import { useFilters } from '../../hooks/useFilters';
 import {
   DASHBOARD_CUSTOMER_ID,
   getTransactions,
 } from '../../services/spendingInsightsService';
-import type { DateRange } from '../../types/common';
 import type { ViewProps } from '../../types/components';
 import { TransactionSortOrder } from '../../types/enums';
-import { isDateRangeReversed } from '../../utils/periods';
 import { SORT_OPTIONS } from './sortOptions';
 import { TransactionFilters } from './TransactionFilters';
 
 const DEFAULT_PAGE_SIZE = 20;
 const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
 const ALL_CATEGORIES = '';
-const EMPTY_DATE_RANGE: DateRange = { startDate: '', endDate: '' };
 
 export function TransactionsView({ title, description }: ViewProps) {
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [sortBy, setSortBy] = useState(TransactionSortOrder.DateDesc);
   const [category, setCategory] = useState(ALL_CATEGORIES);
-  const [dateRange, setDateRange] = useState(EMPTY_DATE_RANGE);
-  const [appliedDateRange, setAppliedDateRange] = useState(EMPTY_DATE_RANGE);
+  const resetPage = useCallback(() => setPage(0), []);
+  const { dateRange, appliedDateRange, changeDateRange } =
+    useDateRangeFilter(resetPage);
   const { data: filters } = useFilters();
 
   const categoryOptions = useMemo(
@@ -82,14 +81,6 @@ export function TransactionsView({ title, description }: ViewProps) {
     setCategory(nextCategory);
     setPage(0);
   }, []);
-  const handleDateRangeChange = useCallback((nextDateRange: DateRange) => {
-    setDateRange(nextDateRange);
-
-    if (!isDateRangeReversed(nextDateRange)) {
-      setAppliedDateRange(nextDateRange);
-      setPage(0);
-    }
-  }, []);
 
   return (
     <>
@@ -111,7 +102,7 @@ export function TransactionsView({ title, description }: ViewProps) {
           category={category}
           onCategoryChange={handleCategoryChange}
           dateRange={dateRange}
-          onDateRangeChange={handleDateRangeChange}
+          onDateRangeChange={changeDateRange}
         />
         <RequestContent
           result={result}

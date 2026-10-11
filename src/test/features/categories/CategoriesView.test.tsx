@@ -1,0 +1,49 @@
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { CategoriesView } from '../../../features/categories/CategoriesView';
+import { createHandlers } from '../../../mocks/handlers';
+import { renderWithTheme } from '../../renderWithTheme';
+import { recordRequests } from '../../requestRecorder';
+import { server } from '../../server';
+
+describe('CategoriesView', () => {
+  let recorder: ReturnType<typeof recordRequests>;
+
+  beforeEach(() => {
+    server.use(...createHandlers('2024-09-16'));
+    recorder = recordRequests();
+  });
+
+  afterEach(() => {
+    recorder.stop();
+  });
+
+  it('uses a custom date range once both dates are set', async () => {
+    renderWithTheme(
+      <CategoriesView title="Categories" description="By category" />,
+    );
+
+    const card = await screen.findByRole('region', {
+      name: 'Spending by category',
+    });
+    expect(within(card).getByText('Groceries')).toBeInTheDocument();
+
+    fireEvent.change(screen.getByLabelText('From'), {
+      target: { value: '2024-08-01' },
+    });
+    fireEvent.change(screen.getByLabelText('To'), {
+      target: { value: '2024-08-31' },
+    });
+
+    await waitFor(() =>
+      expect(
+        recorder.urls.some((url) =>
+          url.includes('startDate=2024-08-01&endDate=2024-08-31'),
+        ),
+      ).toBe(true),
+    );
+    expect(
+      screen.getByText(/Showing your custom date range/),
+    ).toBeInTheDocument();
+  });
+});

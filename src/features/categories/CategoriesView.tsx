@@ -1,0 +1,54 @@
+import { useMemo, useState } from 'react';
+import CalendarTodayOutlined from '@mui/icons-material/CalendarTodayOutlined';
+import { Box, Typography } from '@mui/material';
+import { componentStyles } from '../../components/componentStyles';
+import { DateRangeFields } from '../../components/DateRangeFields';
+import { PageHeader } from '../../components/layout/PageHeader';
+import { SelectField } from '../../components/SelectField';
+import { useDateRangeFilter } from '../../hooks/useDateRangeFilter';
+import { useFilters } from '../../hooks/useFilters';
+import type { ViewProps } from '../../types/components';
+import { DEFAULT_PERIOD } from '../../utils/periods';
+import { CategorySpendingCard } from '../spending/CategorySpendingCard';
+import { categoriesStyles } from './categoriesStyles';
+
+export function CategoriesView({ title, description }: ViewProps) {
+  const [period, setPeriod] = useState(DEFAULT_PERIOD);
+  const { data: filters } = useFilters();
+  const { dateRange, appliedDateRange, changeDateRange } = useDateRangeFilter();
+  const hasCustomRange =
+    appliedDateRange.startDate !== '' && appliedDateRange.endDate !== '';
+
+  const query = useMemo(
+    () => (hasCustomRange ? appliedDateRange : { period }),
+    [hasCustomRange, appliedDateRange, period],
+  );
+
+  return (
+    <>
+      <PageHeader title={title} description={description} />
+      <Box sx={componentStyles.filterBar}>
+        {filters && (
+          <SelectField
+            label="Period"
+            value={period}
+            options={filters.dateRangePresets}
+            onChange={setPeriod}
+            icon={CalendarTodayOutlined}
+          />
+        )}
+        <DateRangeFields value={dateRange} onChange={changeDateRange} />
+      </Box>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={categoriesStyles.rangeNote}
+      >
+        {hasCustomRange
+          ? 'Showing your custom date range. Clear both dates to use the period again.'
+          : 'Choose a period, or set both dates for a custom range.'}
+      </Typography>
+      <CategorySpendingCard query={query} />
+    </>
+  );
+}

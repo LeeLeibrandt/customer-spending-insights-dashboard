@@ -4,7 +4,11 @@ import type { CategoryIcon, DashboardView, Period } from './enums';
 import type { ApiRequestResult } from './apiRequest';
 import type { DateRange } from './common';
 import type { CustomerProfile } from './customer';
-import type { CategorySpending, MonthlySpendingTrend } from './spending';
+import type {
+  CategorySpending,
+  CategorySpendingQuery,
+  MonthlySpendingTrend,
+} from './spending';
 import type { Transaction } from './transactions';
 
 export interface NavigationItem {
@@ -89,7 +93,7 @@ export interface CategoryIconProps {
 }
 
 export interface CategorySpendingCardProps {
-  period: Period;
+  query: CategorySpendingQuery;
 }
 
 export interface CategorySpendingRowProps {

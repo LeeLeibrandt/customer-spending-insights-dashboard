@@ -11,13 +11,18 @@ import {
 import type { CategorySpendingCardProps } from '../../types/components';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import { CategorySpendingRow } from './CategorySpendingRow';
-import { overviewStyles } from './overviewStyles';
+import { spendingStyles } from './spendingStyles';
 
-export function CategorySpendingCard({ period }: CategorySpendingCardProps) {
+export function CategorySpendingCard({ query }: CategorySpendingCardProps) {
+  const { period, startDate, endDate } = query;
   const requestCategories = useCallback(
     (signal: AbortSignal) =>
-      getSpendingByCategory(DASHBOARD_CUSTOMER_ID, { period }, signal),
-    [period],
+      getSpendingByCategory(
+        DASHBOARD_CUSTOMER_ID,
+        { period, startDate, endDate },
+        signal,
+      ),
+    [period, startDate, endDate],
   );
   const result = useApiRequest(requestCategories);
 
@@ -31,7 +36,7 @@ export function CategorySpendingCard({ period }: CategorySpendingCardProps) {
           title="Spending by category"
           subtitle={`${formatDate(data.dateRange.startDate)} to ${formatDate(data.dateRange.endDate)}`}
         >
-          <Typography sx={overviewStyles.categoryTotal}>
+          <Typography sx={spendingStyles.categoryTotal}>
             {formatCurrency(data.totalAmount, DASHBOARD_CURRENCY)}
           </Typography>
           {data.categories.length === 0 ? (
@@ -39,7 +44,7 @@ export function CategorySpendingCard({ period }: CategorySpendingCardProps) {
               No spending in this period.
             </Typography>
           ) : (
-            <Box component="ul" sx={overviewStyles.categoryList}>
+            <Box component="ul" sx={spendingStyles.categoryList}>
               {data.categories.map((category) => (
                 <CategorySpendingRow key={category.name} category={category} />
               ))}

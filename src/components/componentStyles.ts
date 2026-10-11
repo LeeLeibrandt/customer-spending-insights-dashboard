@@ -53,6 +53,12 @@ export const componentStyles = {
   selectField: {
     minWidth: 200,
   },
+  filterBar: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    gap: 2,
+  },
   dateRangeFields: {
     display: 'flex',
     flexWrap: 'wrap',

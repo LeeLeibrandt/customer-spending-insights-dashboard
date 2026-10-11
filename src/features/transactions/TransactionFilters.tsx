@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { DateRangeFields } from '../../components/DateRangeFields';
 import { SelectField } from '../../components/SelectField';
 import type { TransactionFiltersProps } from '../../types/components';
-import { transactionsStyles } from './transactionsStyles';
+import { componentStyles } from '../../components/componentStyles';
 
 export const TransactionFilters = memo(function TransactionFilters({
   categoryOptions,
@@ -14,7 +14,7 @@ export const TransactionFilters = memo(function TransactionFilters({
   onDateRangeChange,
 }: TransactionFiltersProps) {
   return (
-    <Box sx={transactionsStyles.filters}>
+    <Box sx={componentStyles.filterBar}>
       <SelectField
         label="Category"
         value={category}
