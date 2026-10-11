@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
-import type { DashboardView } from './enums';
+import type { DashboardView, Period } from './enums';
 
 export interface NavigationItem {
   view: DashboardView;
@@ -29,4 +29,20 @@ export interface DashboardLayoutProps {
   activeView: DashboardView;
   onSelectView: (view: DashboardView) => void;
   children?: ReactNode;
+}
+
+export interface StatCardProps {
+  icon: SvgIconComponent;
+  label: string;
+  value: string;
+  change?: number;
+}
+
+export interface ChangeIndicatorProps {
+  value: number;
+  label: string;
+}
+
+export interface SpendingSummaryCardsProps {
+  period: Period;
 }

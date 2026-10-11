@@ -17,6 +17,7 @@ describe('App', () => {
       screen.getByRole('heading', { level: 1, name: 'Spending insights' }),
     ).toBeInTheDocument();
     expect(await screen.findByText('John Doe')).toBeInTheDocument();
+    expect(await screen.findByText('Total spent')).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Open navigation' }));
     fireEvent.click(screen.getByRole('button', { name: 'Transactions' }));

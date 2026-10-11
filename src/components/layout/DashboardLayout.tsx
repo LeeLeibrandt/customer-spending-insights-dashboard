@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Box } from '@mui/material';
 import type { DashboardLayoutProps } from '../../types/components';
 import type { DashboardView } from '../../types/enums';
@@ -16,19 +16,24 @@ export function DashboardLayout({
   const [isNavigationOpen, setIsNavigationOpen] = useState(false);
   const activeItem = NAVIGATION_ITEMS.find(({ view }) => view === activeView);
 
-  const handleSelectView = (view: DashboardView) => {
-    onSelectView(view);
-    setIsNavigationOpen(false);
-  };
+  const openNavigation = useCallback(() => setIsNavigationOpen(true), []);
+  const closeNavigation = useCallback(() => setIsNavigationOpen(false), []);
+  const handleSelectView = useCallback(
+    (view: DashboardView) => {
+      onSelectView(view);
+      setIsNavigationOpen(false);
+    },
+    [onSelectView],
+  );
 
   return (
     <Box sx={layoutStyles.root}>
-      <AppHeader onOpenNavigation={() => setIsNavigationOpen(true)} />
+      <AppHeader onOpenNavigation={openNavigation} />
       <AppSidebar
         activeView={activeView}
         isMobileOpen={isNavigationOpen}
         onSelectView={handleSelectView}
-        onClose={() => setIsNavigationOpen(false)}
+        onClose={closeNavigation}
       />
       <Box component="main" sx={layoutStyles.content}>
         <Box sx={layoutStyles.contentOffset} />

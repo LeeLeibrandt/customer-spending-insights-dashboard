@@ -24,6 +24,8 @@ export const colors = {
     surface: '#ffffff',
   },
   border: '#e6e9ee',
+  success: '#1d7a4c',
+  iconSurface: '#f1f3f6',
   text: {
     primary: '#1c2434',
     secondary: '#5b6675',

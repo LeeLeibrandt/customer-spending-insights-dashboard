@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   Box,
   Drawer,
@@ -13,7 +14,7 @@ import type { AppSidebarProps } from '../../types/components';
 import { layoutStyles } from './layoutStyles';
 import { NAVIGATION_ITEMS } from './navigationItems';
 
-export function AppSidebar({
+export const AppSidebar = memo(function AppSidebar({
   activeView,
   isMobileOpen,
   onSelectView,
@@ -64,4 +65,4 @@ export function AppSidebar({
       </Drawer>
     </Box>
   );
-}
+});
