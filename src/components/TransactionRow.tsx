@@ -1,28 +1,28 @@
 import { memo } from 'react';
 import { Box, TableCell, TableRow, Typography } from '@mui/material';
-import { CategoryIcon } from '../../components/CategoryIcon';
-import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
-import type { TransactionRowProps } from '../../types/components';
-import { toIsoDateFromTimestamp } from '../../utils/dates';
-import { formatCurrency, formatDate } from '../../utils/formatters';
-import { overviewStyles } from './overviewStyles';
+import { DASHBOARD_CURRENCY } from '../services/spendingInsightsService';
+import type { TransactionRowProps } from '../types/components';
+import { toIsoDateFromTimestamp } from '../utils/dates';
+import { formatCurrency, formatDate } from '../utils/formatters';
+import { CategoryIcon } from './CategoryIcon';
+import { componentStyles } from './componentStyles';
 
 export const TransactionRow = memo(function TransactionRow({
   transaction,
 }: TransactionRowProps) {
   return (
     <TableRow>
-      <TableCell sx={overviewStyles.noWrap}>
+      <TableCell sx={componentStyles.noWrap}>
         {formatDate(toIsoDateFromTimestamp(transaction.date))}
       </TableCell>
       <TableCell>
-        <Box sx={overviewStyles.merchantCell}>
+        <Box sx={componentStyles.merchantCell}>
           <CategoryIcon
             icon={transaction.icon}
             color={transaction.categoryColor}
           />
           <Box>
-            <Typography variant="body2" sx={overviewStyles.merchantName}>
+            <Typography variant="body2" sx={componentStyles.merchantName}>
               {transaction.merchant}
             </Typography>
             <Typography variant="caption" color="text.secondary">
@@ -31,11 +31,11 @@ export const TransactionRow = memo(function TransactionRow({
           </Box>
         </Box>
       </TableCell>
-      <TableCell sx={overviewStyles.noWrap}>{transaction.category}</TableCell>
-      <TableCell sx={overviewStyles.noWrap}>
+      <TableCell sx={componentStyles.noWrap}>{transaction.category}</TableCell>
+      <TableCell sx={componentStyles.noWrap}>
         {transaction.paymentMethod}
       </TableCell>
-      <TableCell align="right" sx={overviewStyles.amountCell}>
+      <TableCell align="right" sx={componentStyles.amountCell}>
         {formatCurrency(transaction.amount, DASHBOARD_CURRENCY)}
       </TableCell>
     </TableRow>

@@ -6,6 +6,7 @@ import {
   formatMonth,
   formatPercentage,
   formatPercentageChange,
+  formatTransactionCount,
 } from '../../utils/formatters';
 import { WHITESPACE_PATTERN } from '../../utils/patterns';
 
@@ -51,5 +52,12 @@ describe('formatInitials', () => {
   it('uses the first letters of the first two names', () => {
     expect(formatInitials('John Doe')).toBe('JD');
     expect(formatInitials('nomsa  dlamini mokoena')).toBe('ND');
+  });
+});
+
+describe('formatTransactionCount', () => {
+  it('uses the singular for one transaction', () => {
+    expect(formatTransactionCount(1)).toBe('1 transaction');
+    expect(formatTransactionCount(15)).toBe('15 transactions');
   });
 });

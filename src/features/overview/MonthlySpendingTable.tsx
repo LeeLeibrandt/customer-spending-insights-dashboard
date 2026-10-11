@@ -3,13 +3,13 @@ import { Box } from '@mui/material';
 import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
 import type { MonthlySpendingProps } from '../../types/components';
 import { formatCurrency, formatMonth } from '../../utils/formatters';
-import { overviewStyles } from './overviewStyles';
+import { componentStyles } from '../../components/componentStyles';
 
 export const MonthlySpendingTable = memo(function MonthlySpendingTable({
   trends,
 }: MonthlySpendingProps) {
   return (
-    <Box component="table" sx={overviewStyles.visuallyHidden}>
+    <Box component="table" sx={componentStyles.visuallyHidden}>
       <caption>Monthly spending</caption>
       <thead>
         <tr>

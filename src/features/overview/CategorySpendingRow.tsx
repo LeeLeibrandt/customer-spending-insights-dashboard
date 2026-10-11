@@ -3,7 +3,11 @@ import { Box, Typography } from '@mui/material';
 import { CategoryIcon } from '../../components/CategoryIcon';
 import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
 import type { CategorySpendingRowProps } from '../../types/components';
-import { formatCurrency, formatPercentage } from '../../utils/formatters';
+import {
+  formatCurrency,
+  formatPercentage,
+  formatTransactionCount,
+} from '../../utils/formatters';
 import { overviewStyles } from './overviewStyles';
 
 export const CategorySpendingRow = memo(function CategorySpendingRow({
@@ -34,9 +38,7 @@ export const CategorySpendingRow = memo(function CategorySpendingRow({
         </Box>
         <Box sx={overviewStyles.categoryMeta}>
           <Typography variant="caption" color="text.secondary">
-            {category.transactionCount === 1
-              ? '1 transaction'
-              : `${category.transactionCount} transactions`}
+            {formatTransactionCount(category.transactionCount)}
           </Typography>
           <Typography variant="caption" color="text.secondary">
             {formatPercentage(category.percentage)}

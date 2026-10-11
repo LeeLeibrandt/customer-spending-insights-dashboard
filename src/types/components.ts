@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
 import type { CategoryIcon, DashboardView, Period } from './enums';
 import type { DateRangePreset } from './filters';
+import type { ApiRequestResult } from './apiRequest';
 import type { CustomerProfile } from './customer';
 import type { CategorySpending, MonthlySpendingTrend } from './spending';
 import type { Transaction } from './transactions';
@@ -102,6 +103,18 @@ export interface RecentTransactionsCardProps {
 
 export interface TransactionRowProps {
   transaction: Transaction;
+}
+
+export interface TransactionsTableProps {
+  transactions: Transaction[];
+}
+
+export interface RequestContentProps<T> {
+  result: ApiRequestResult<T>;
+  errorMessage: string;
+  skeletonHeight?: number;
+  loadingFallback?: ReactNode;
+  children: (data: T) => ReactNode;
 }
 
 export interface CustomerProfileDetailsProps {

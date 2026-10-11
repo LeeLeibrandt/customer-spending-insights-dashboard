@@ -10,10 +10,6 @@ export const overviewStyles = {
       lg: 'repeat(4, minmax(0, 1fr))',
     },
   },
-  summarySkeleton: {
-    height: 148,
-    borderRadius: 3,
-  },
   contentGrid: {
     display: 'grid',
     gap: 2,
@@ -22,10 +18,6 @@ export const overviewStyles = {
       xs: 'minmax(0, 1fr)',
       lg: 'minmax(0, 2fr) minmax(0, 1fr)',
     },
-  },
-  cardSkeleton: {
-    height: 320,
-    borderRadius: 3,
   },
   categoryTotal: {
     fontWeight: 700,
@@ -77,47 +69,7 @@ export const overviewStyles = {
     justifyContent: 'space-between',
     gap: 1,
   },
-  recentTransactions: {
+  fullWidth: {
     gridColumn: '1 / -1',
-  },
-  tableContainer: {
-    overflowX: 'auto',
-  },
-  tableHeadCell: {
-    color: 'text.secondary',
-    fontWeight: 500,
-    whiteSpace: 'nowrap',
-  },
-  merchantCell: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 1.5,
-    minWidth: 180,
-  },
-  merchantName: {
-    fontWeight: 500,
-  },
-  amountCell: {
-    fontWeight: 600,
-    fontVariantNumeric: 'tabular-nums',
-    whiteSpace: 'nowrap',
-  },
-  noWrap: {
-    whiteSpace: 'nowrap',
-  },
-  chartSkeleton: {
-    height: 280,
-    borderRadius: 2,
-  },
-  visuallyHidden: {
-    position: 'absolute',
-    width: 1,
-    height: 1,
-    p: 0,
-    m: -1,
-    overflow: 'hidden',
-    clip: 'rect(0 0 0 0)',
-    whiteSpace: 'nowrap',
-    border: 0,
   },
 } satisfies Record<string, SxProps<Theme>>;

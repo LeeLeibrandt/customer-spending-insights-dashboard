@@ -83,4 +83,43 @@ export const componentStyles = {
     borderRadius: 2,
     bgcolor: colors.iconSurface,
   },
+  skeleton: {
+    borderRadius: 3,
+  },
+  visuallyHidden: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
+    p: 0,
+    m: -1,
+    overflow: 'hidden',
+    clip: 'rect(0 0 0 0)',
+    whiteSpace: 'nowrap',
+    border: 0,
+  },
+  tableContainer: {
+    overflowX: 'auto',
+  },
+  tableHeadCell: {
+    color: 'text.secondary',
+    fontWeight: 500,
+    whiteSpace: 'nowrap',
+  },
+  merchantCell: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1.5,
+    minWidth: 180,
+  },
+  merchantName: {
+    fontWeight: 500,
+  },
+  amountCell: {
+    fontWeight: 600,
+    fontVariantNumeric: 'tabular-nums',
+    whiteSpace: 'nowrap',
+  },
+  noWrap: {
+    whiteSpace: 'nowrap',
+  },
 } satisfies Record<string, SxProps<Theme>>;

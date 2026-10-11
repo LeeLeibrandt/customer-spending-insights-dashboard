@@ -41,6 +41,10 @@ export function formatDate(isoDate: string): string {
   }).format(new Date(`${isoDate}T00:00:00Z`));
 }
 
+export function formatTransactionCount(count: number): string {
+  return count === 1 ? '1 transaction' : `${count} transactions`;
+}
+
 export function formatInitials(name: string): string {
   return name
     .split(' ')

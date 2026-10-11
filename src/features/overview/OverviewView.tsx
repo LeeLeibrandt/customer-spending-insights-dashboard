@@ -45,7 +45,9 @@ export function OverviewView({
       <Box sx={overviewStyles.contentGrid}>
         <MonthlySpendingCard />
         <CategorySpendingCard period={period} />
-        <RecentTransactionsCard onViewAll={onViewTransactions} />
+        <Box sx={overviewStyles.fullWidth}>
+          <RecentTransactionsCard onViewAll={onViewTransactions} />
+        </Box>
       </Box>
     </>
   );
