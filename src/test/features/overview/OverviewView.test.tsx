@@ -22,6 +22,27 @@ describe('OverviewView', () => {
     server.events.removeListener('request:start', recordRequest);
   });
 
+  it('shows spending by category', async () => {
+    renderWithTheme(
+      <OverviewView title="Spending insights" description="Overview" />,
+    );
+
+    const card = await screen.findByRole('region', {
+      name: 'Spending by category',
+    });
+    expect(within(card).getByText('Groceries')).toBeInTheDocument();
+  });
+
+  it('shows monthly spending with a table alternative', async () => {
+    renderWithTheme(
+      <OverviewView title="Spending insights" description="Overview" />,
+    );
+
+    expect(
+      await screen.findByRole('table', { name: 'Monthly spending' }),
+    ).toBeInTheDocument();
+  });
+
   it('loads the summary for the selected period', async () => {
     renderWithTheme(
       <OverviewView title="Spending insights" description="Overview" />,

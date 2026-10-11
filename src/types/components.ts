@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
-import type { DashboardView, Period } from './enums';
+import type { CategoryIcon, DashboardView, Period } from './enums';
 import type { DateRangePreset } from './filters';
+import type { CategorySpending, MonthlySpendingTrend } from './spending';
 
 export interface NavigationItem {
   view: DashboardView;
@@ -58,4 +59,32 @@ export interface PeriodSelectProps {
 export interface ViewProps {
   title: string;
   description: string;
+}
+
+export interface SectionCardProps {
+  title: string;
+  subtitle?: string;
+  children: ReactNode;
+}
+
+export interface RequestErrorProps {
+  message: string;
+  onRetry: () => void;
+}
+
+export interface CategoryIconProps {
+  icon: CategoryIcon;
+  color: string;
+}
+
+export interface CategorySpendingCardProps {
+  period: Period;
+}
+
+export interface CategorySpendingRowProps {
+  category: CategorySpending;
+}
+
+export interface MonthlySpendingProps {
+  trends: MonthlySpendingTrend[];
 }

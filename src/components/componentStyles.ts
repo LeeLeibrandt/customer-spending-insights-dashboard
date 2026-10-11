@@ -56,4 +56,25 @@ export const componentStyles = {
   periodSelectIcon: {
     color: 'text.secondary',
   },
+  sectionCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    p: 2.5,
+    border: `1px solid ${colors.border}`,
+    borderRadius: 3,
+  },
+  sectionCardTitle: {
+    fontSize: '1.05rem',
+    fontWeight: 600,
+  },
+  categoryIcon: {
+    display: 'grid',
+    placeItems: 'center',
+    flexShrink: 0,
+    width: 32,
+    height: 32,
+    borderRadius: 2,
+    bgcolor: colors.iconSurface,
+  },
 } satisfies Record<string, SxProps<Theme>>;

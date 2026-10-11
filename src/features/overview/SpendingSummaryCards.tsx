@@ -3,7 +3,8 @@ import AccountBalanceWalletOutlined from '@mui/icons-material/AccountBalanceWall
 import CategoryOutlined from '@mui/icons-material/CategoryOutlined';
 import CreditCardOutlined from '@mui/icons-material/CreditCardOutlined';
 import SwapHoriz from '@mui/icons-material/SwapHoriz';
-import { Alert, Box, Button, Skeleton } from '@mui/material';
+import { Box, Skeleton } from '@mui/material';
+import { RequestError } from '../../components/RequestError';
 import { StatCard } from '../../components/StatCard';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import {
@@ -27,16 +28,10 @@ export function SpendingSummaryCards({ period }: SpendingSummaryCardsProps) {
 
   if (error) {
     return (
-      <Alert
-        severity="error"
-        action={
-          <Button color="inherit" size="small" onClick={retry}>
-            Try again
-          </Button>
-        }
-      >
-        Your spending summary could not be loaded.
-      </Alert>
+      <RequestError
+        message="Your spending summary could not be loaded."
+        onRetry={retry}
+      />
     );
   }
 
