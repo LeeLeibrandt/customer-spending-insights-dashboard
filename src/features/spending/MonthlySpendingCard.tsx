@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useCallback } from 'react';
 import { Skeleton } from '@mui/material';
 import { componentStyles } from '../../components/componentStyles';
 import { RequestContent } from '../../components/RequestContent';
@@ -8,6 +8,7 @@ import {
   DASHBOARD_CUSTOMER_ID,
   getSpendingTrends,
 } from '../../services/spendingInsightsService';
+import type { MonthlySpendingCardProps } from '../../types/components';
 import { MonthlySpendingTable } from './MonthlySpendingTable';
 
 const CHART_HEIGHT = 280;
@@ -18,10 +19,15 @@ const MonthlySpendingChart = lazy(() =>
   })),
 );
 
-const requestTrends = (signal: AbortSignal) =>
-  getSpendingTrends(DASHBOARD_CUSTOMER_ID, {}, signal);
-
-export function MonthlySpendingCard() {
+export function MonthlySpendingCard({
+  months,
+  showTable = false,
+}: MonthlySpendingCardProps) {
+  const requestTrends = useCallback(
+    (signal: AbortSignal) =>
+      getSpendingTrends(DASHBOARD_CUSTOMER_ID, { months }, signal),
+    [months],
+  );
   const result = useApiRequest(requestTrends);
 
   return (
@@ -30,7 +36,10 @@ export function MonthlySpendingCard() {
       errorMessage="Your monthly spending could not be loaded."
     >
       {(data) => (
-        <SectionCard title="Monthly spending" subtitle="Last 12 months">
+        <SectionCard
+          title="Monthly spending"
+          subtitle={`Last ${months} months`}
+        >
           <Suspense
             fallback={
               <Skeleton
@@ -42,7 +51,7 @@ export function MonthlySpendingCard() {
           >
             <MonthlySpendingChart trends={data.trends} />
           </Suspense>
-          <MonthlySpendingTable trends={data.trends} />
+          <MonthlySpendingTable trends={data.trends} isVisible={showTable} />
         </SectionCard>
       )}
     </RequestContent>

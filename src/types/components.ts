@@ -104,6 +104,15 @@ export interface MonthlySpendingProps {
   trends: MonthlySpendingTrend[];
 }
 
+export interface MonthlySpendingTableProps extends MonthlySpendingProps {
+  isVisible?: boolean;
+}
+
+export interface MonthlySpendingCardProps {
+  months: number;
+  showTable?: boolean;
+}
+
 export interface OverviewViewProps extends ViewProps {
   onViewTransactions: () => void;
 }

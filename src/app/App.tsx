@@ -5,6 +5,7 @@ import { PageHeader } from '../components/layout/PageHeader';
 import { CategoriesView } from '../features/categories/CategoriesView';
 import { OverviewView } from '../features/overview/OverviewView';
 import { TransactionsView } from '../features/transactions/TransactionsView';
+import { TrendsView } from '../features/trends/TrendsView';
 import { DashboardView } from '../types/enums';
 
 export function App() {
@@ -32,6 +33,8 @@ export function App() {
         );
       case DashboardView.Categories:
         return <CategoriesView {...viewProps} />;
+      case DashboardView.Trends:
+        return <TrendsView {...viewProps} />;
       case DashboardView.Transactions:
         return <TransactionsView {...viewProps} />;
       default:
