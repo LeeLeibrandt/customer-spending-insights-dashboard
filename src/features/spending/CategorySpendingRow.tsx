@@ -1,12 +1,13 @@
 import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { CategoryIcon } from '../../components/CategoryIcon';
+import { ProgressBar } from '../../components/ProgressBar';
 import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
 import type { CategorySpendingRowProps } from '../../types/components';
 import {
+  formatCount,
   formatCurrency,
   formatPercentage,
-  formatTransactionCount,
 } from '../../utils/formatters';
 import { spendingStyles } from './spendingStyles';
 
@@ -25,20 +26,10 @@ export const CategorySpendingRow = memo(function CategorySpendingRow({
             {formatCurrency(category.amount, DASHBOARD_CURRENCY)}
           </Typography>
         </Box>
-        <Box sx={spendingStyles.categoryBarTrack}>
-          <Box
-            sx={[
-              spendingStyles.categoryBar,
-              {
-                width: `${category.percentage}%`,
-                bgcolor: category.color,
-              },
-            ]}
-          />
-        </Box>
+        <ProgressBar value={category.percentage} color={category.color} />
         <Box sx={spendingStyles.categoryMeta}>
           <Typography variant="caption" color="text.secondary">
-            {formatTransactionCount(category.transactionCount)}
+            {formatCount(category.transactionCount, 'transaction')}
           </Typography>
           <Typography variant="caption" color="text.secondary">
             {formatPercentage(category.percentage)}

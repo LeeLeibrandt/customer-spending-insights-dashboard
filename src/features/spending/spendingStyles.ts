@@ -35,17 +35,6 @@ export const spendingStyles = {
     fontWeight: 600,
     fontVariantNumeric: 'tabular-nums',
   },
-  categoryBarTrack: {
-    height: 6,
-    my: 0.75,
-    borderRadius: 3,
-    bgcolor: 'action.hover',
-    overflow: 'hidden',
-  },
-  categoryBar: {
-    height: '100%',
-    borderRadius: 3,
-  },
   categoryMeta: {
     display: 'flex',
     justifyContent: 'space-between',

@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
-import type { CategoryIcon, DashboardView, Period } from './enums';
+import type { SpendingCategory } from './categories';
+import type { CategoryIcon, DashboardView, GoalStatus, Period } from './enums';
+import type { SpendingGoal } from './goals';
 import type { ApiRequestResult } from './apiRequest';
 import type { DateRange } from './common';
 import type { CustomerProfile } from './customer';
@@ -152,4 +154,25 @@ export interface TransactionFiltersProps {
   onCategoryChange: (category: string) => void;
   dateRange: DateRange;
   onDateRangeChange: (dateRange: DateRange) => void;
+}
+
+export interface ProgressBarProps {
+  value: number;
+  color: string;
+}
+
+export interface GoalStatusLabelProps {
+  status: GoalStatus;
+}
+
+export interface GoalCardProps {
+  goal: SpendingGoal;
+  category?: SpendingCategory;
+}
+
+export interface GoalStatusDetails {
+  label: string;
+  icon: SvgIconComponent;
+  color: string;
+  tint: string;
 }

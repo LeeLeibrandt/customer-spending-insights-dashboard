@@ -101,6 +101,17 @@ export const componentStyles = {
     borderRadius: 2,
     bgcolor: colors.iconSurface,
   },
+  progressTrack: {
+    height: 6,
+    my: 0.75,
+    borderRadius: 3,
+    bgcolor: 'action.hover',
+    overflow: 'hidden',
+  },
+  progressBar: {
+    height: '100%',
+    borderRadius: 3,
+  },
   skeleton: {
     borderRadius: 3,
   },

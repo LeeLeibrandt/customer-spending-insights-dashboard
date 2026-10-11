@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { NAVIGATION_ITEMS } from '../components/layout/navigationItems';
-import { PageHeader } from '../components/layout/PageHeader';
 import { CategoriesView } from '../features/categories/CategoriesView';
+import { GoalsView } from '../features/goals/GoalsView';
 import { OverviewView } from '../features/overview/OverviewView';
 import { TransactionsView } from '../features/transactions/TransactionsView';
 import { TrendsView } from '../features/trends/TrendsView';
@@ -37,8 +37,8 @@ export function App() {
         return <TrendsView {...viewProps} />;
       case DashboardView.Transactions:
         return <TransactionsView {...viewProps} />;
-      default:
-        return <PageHeader {...viewProps} />;
+      case DashboardView.Goals:
+        return <GoalsView {...viewProps} />;
     }
   };
 

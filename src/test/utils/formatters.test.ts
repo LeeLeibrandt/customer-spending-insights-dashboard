@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
+  formatCount,
   formatCurrency,
   formatDate,
   formatInitials,
   formatMonth,
   formatPercentage,
   formatPercentageChange,
-  formatTransactionCount,
 } from '../../utils/formatters';
 import { WHITESPACE_PATTERN } from '../../utils/patterns';
 
@@ -55,9 +55,10 @@ describe('formatInitials', () => {
   });
 });
 
-describe('formatTransactionCount', () => {
-  it('uses the singular for one transaction', () => {
-    expect(formatTransactionCount(1)).toBe('1 transaction');
-    expect(formatTransactionCount(15)).toBe('15 transactions');
+describe('formatCount', () => {
+  it('uses the singular only for one', () => {
+    expect(formatCount(1, 'transaction')).toBe('1 transaction');
+    expect(formatCount(15, 'transaction')).toBe('15 transactions');
+    expect(formatCount(0, 'day')).toBe('0 days');
   });
 });
