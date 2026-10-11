@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Box } from '@mui/material';
 import { PageHeader } from '../../components/layout/PageHeader';
-import { PeriodSelect } from '../../components/PeriodSelect';
+import CalendarTodayOutlined from '@mui/icons-material/CalendarTodayOutlined';
+import { SelectField } from '../../components/SelectField';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import {
   DASHBOARD_CUSTOMER_ID,
@@ -33,10 +34,12 @@ export function OverviewView({
         description={description}
         action={
           filters && (
-            <PeriodSelect
+            <SelectField
+              label="Period"
               value={period}
-              presets={filters.dateRangePresets}
+              options={filters.dateRangePresets}
               onChange={setPeriod}
+              icon={CalendarTodayOutlined}
             />
           )
         }

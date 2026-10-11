@@ -50,10 +50,10 @@ export const componentStyles = {
   changeDecrease: {
     color: colors.success,
   },
-  periodSelect: {
+  selectField: {
     minWidth: 200,
   },
-  periodSelectIcon: {
+  selectFieldIcon: {
     color: 'text.secondary',
   },
   sectionCard: {

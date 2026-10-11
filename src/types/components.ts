@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
 import type { CategoryIcon, DashboardView, Period } from './enums';
-import type { DateRangePreset } from './filters';
 import type { ApiRequestResult } from './apiRequest';
 import type { CustomerProfile } from './customer';
 import type { CategorySpending, MonthlySpendingTrend } from './spending';
@@ -53,10 +52,17 @@ export interface SpendingSummaryCardsProps {
   period: Period;
 }
 
-export interface PeriodSelectProps {
-  value: Period;
-  presets: DateRangePreset[];
-  onChange: (period: Period) => void;
+export interface SelectOption<T extends string> {
+  value: T;
+  label: string;
+}
+
+export interface SelectFieldProps<T extends string> {
+  label: string;
+  value: T;
+  options: SelectOption<T>[];
+  onChange: (value: T) => void;
+  icon?: SvgIconComponent;
 }
 
 export interface ViewProps {
