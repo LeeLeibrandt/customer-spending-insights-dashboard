@@ -77,6 +77,34 @@ export const overviewStyles = {
     justifyContent: 'space-between',
     gap: 1,
   },
+  recentTransactions: {
+    gridColumn: '1 / -1',
+  },
+  tableContainer: {
+    overflowX: 'auto',
+  },
+  tableHeadCell: {
+    color: 'text.secondary',
+    fontWeight: 500,
+    whiteSpace: 'nowrap',
+  },
+  merchantCell: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1.5,
+    minWidth: 180,
+  },
+  merchantName: {
+    fontWeight: 500,
+  },
+  amountCell: {
+    fontWeight: 600,
+    fontVariantNumeric: 'tabular-nums',
+    whiteSpace: 'nowrap',
+  },
+  noWrap: {
+    whiteSpace: 'nowrap',
+  },
   chartSkeleton: {
     height: 280,
     borderRadius: 2,

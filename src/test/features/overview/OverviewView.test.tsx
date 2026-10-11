@@ -1,11 +1,12 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { OverviewView } from '../../../features/overview/OverviewView';
 import { createHandlers } from '../../../mocks/handlers';
 import { renderWithTheme } from '../../renderWithTheme';
 import { server } from '../../server';
 
 const requestedUrls: string[] = [];
+const onViewTransactions = vi.fn();
 
 function recordRequest({ request }: { request: Request }) {
   requestedUrls.push(request.url);
@@ -24,7 +25,11 @@ describe('OverviewView', () => {
 
   it('shows spending by category', async () => {
     renderWithTheme(
-      <OverviewView title="Spending insights" description="Overview" />,
+      <OverviewView
+        title="Spending insights"
+        description="Overview"
+        onViewTransactions={onViewTransactions}
+      />,
     );
 
     const card = await screen.findByRole('region', {
@@ -35,7 +40,11 @@ describe('OverviewView', () => {
 
   it('shows monthly spending with a table alternative', async () => {
     renderWithTheme(
-      <OverviewView title="Spending insights" description="Overview" />,
+      <OverviewView
+        title="Spending insights"
+        description="Overview"
+        onViewTransactions={onViewTransactions}
+      />,
     );
 
     expect(
@@ -43,9 +52,31 @@ describe('OverviewView', () => {
     ).toBeInTheDocument();
   });
 
+  it('shows recent transactions and links to all transactions', async () => {
+    renderWithTheme(
+      <OverviewView
+        title="Spending insights"
+        description="Overview"
+        onViewTransactions={onViewTransactions}
+      />,
+    );
+
+    const card = await screen.findByRole('region', {
+      name: 'Recent transactions',
+    });
+    expect(within(card).getAllByRole('row')).toHaveLength(6);
+
+    fireEvent.click(within(card).getByRole('button', { name: 'View all' }));
+    expect(onViewTransactions).toHaveBeenCalledOnce();
+  });
+
   it('loads the summary for the selected period', async () => {
     renderWithTheme(
-      <OverviewView title="Spending insights" description="Overview" />,
+      <OverviewView
+        title="Spending insights"
+        description="Overview"
+        onViewTransactions={onViewTransactions}
+      />,
     );
 
     fireEvent.mouseDown(

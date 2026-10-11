@@ -2,7 +2,9 @@ import type { ReactNode } from 'react';
 import type { SvgIconComponent } from '@mui/icons-material';
 import type { CategoryIcon, DashboardView, Period } from './enums';
 import type { DateRangePreset } from './filters';
+import type { CustomerProfile } from './customer';
 import type { CategorySpending, MonthlySpendingTrend } from './spending';
+import type { Transaction } from './transactions';
 
 export interface NavigationItem {
   view: DashboardView;
@@ -64,6 +66,7 @@ export interface ViewProps {
 export interface SectionCardProps {
   title: string;
   subtitle?: string;
+  action?: ReactNode;
   children: ReactNode;
 }
 
@@ -87,4 +90,20 @@ export interface CategorySpendingRowProps {
 
 export interface MonthlySpendingProps {
   trends: MonthlySpendingTrend[];
+}
+
+export interface OverviewViewProps extends ViewProps {
+  onViewTransactions: () => void;
+}
+
+export interface RecentTransactionsCardProps {
+  onViewAll: () => void;
+}
+
+export interface TransactionRowProps {
+  transaction: Transaction;
+}
+
+export interface CustomerProfileDetailsProps {
+  profile: CustomerProfile;
 }

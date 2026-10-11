@@ -7,17 +7,22 @@ import {
   DASHBOARD_CUSTOMER_ID,
   getFilters,
 } from '../../services/spendingInsightsService';
-import type { ViewProps } from '../../types/components';
+import type { OverviewViewProps } from '../../types/components';
 import { DEFAULT_PERIOD } from '../../utils/periods';
 import { CategorySpendingCard } from './CategorySpendingCard';
 import { MonthlySpendingCard } from './MonthlySpendingCard';
 import { overviewStyles } from './overviewStyles';
+import { RecentTransactionsCard } from './RecentTransactionsCard';
 import { SpendingSummaryCards } from './SpendingSummaryCards';
 
 const requestFilters = (signal: AbortSignal) =>
   getFilters(DASHBOARD_CUSTOMER_ID, signal);
 
-export function OverviewView({ title, description }: ViewProps) {
+export function OverviewView({
+  title,
+  description,
+  onViewTransactions,
+}: OverviewViewProps) {
   const [period, setPeriod] = useState(DEFAULT_PERIOD);
   const { data: filters } = useApiRequest(requestFilters);
 
@@ -40,6 +45,7 @@ export function OverviewView({ title, description }: ViewProps) {
       <Box sx={overviewStyles.contentGrid}>
         <MonthlySpendingCard />
         <CategorySpendingCard period={period} />
+        <RecentTransactionsCard onViewAll={onViewTransactions} />
       </Box>
     </>
   );

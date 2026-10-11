@@ -64,6 +64,12 @@ export const componentStyles = {
     border: `1px solid ${colors.border}`,
     borderRadius: 3,
   },
+  sectionCardHeader: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: 2,
+  },
   sectionCardTitle: {
     fontSize: '1.05rem',
     fontWeight: 600,

@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../../app/App';
 import { createHandlers } from '../../mocks/handlers';
@@ -31,5 +31,15 @@ describe('App', () => {
         hidden: true,
       }),
     ).toBeInTheDocument();
+  });
+
+  it('shows the customer profile from the header', async () => {
+    renderWithTheme(<App />);
+
+    fireEvent.click(await screen.findByRole('button', { name: /John Doe/ }));
+
+    const profile = await screen.findByRole('presentation');
+    expect(within(profile).getByText('Premium')).toBeInTheDocument();
+    expect(within(profile).getByText('Lifetime spent')).toBeInTheDocument();
   });
 });
