@@ -11,8 +11,8 @@ if (!rootElement) {
   throw new Error('The application root element could not be found.');
 }
 
-const { worker } = await import('./mocks/browser');
-await worker.start({ onUnhandledRequest: 'bypass' });
+const { startMocking } = await import('./mocks/browser');
+await startMocking();
 
 createRoot(rootElement).render(
   <StrictMode>

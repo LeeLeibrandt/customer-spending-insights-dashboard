@@ -4,13 +4,13 @@ import { CategoryIcon } from '../../components/CategoryIcon';
 import { ProgressBar } from '../../components/ProgressBar';
 import { SectionCard } from '../../components/SectionCard';
 import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
+import { colors } from '../../styles/colors';
 import type { GoalCardProps } from '../../types/components';
 import {
   formatCount,
   formatCurrency,
   formatPercentage,
 } from '../../utils/formatters';
-import { GOAL_STATUS_DETAILS } from './goalStatusDetails';
 import { GoalStatusLabel } from './GoalStatusLabel';
 import { goalsStyles } from './goalsStyles';
 
@@ -38,7 +38,7 @@ export const GoalCard = memo(function GoalCard({
       <Box>
         <ProgressBar
           value={goal.percentageUsed}
-          color={GOAL_STATUS_DETAILS[goal.status].color}
+          color={category?.color ?? colors.brand.redStrong}
         />
         <Typography variant="caption" color="text.secondary">
           {formatPercentage(goal.percentageUsed)} used

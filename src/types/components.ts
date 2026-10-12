@@ -10,6 +10,7 @@ import type {
   CategorySpending,
   CategorySpendingQuery,
   MonthlySpendingTrend,
+  SpendingBucket,
 } from './spending';
 import type { Transaction } from './transactions';
 
@@ -104,6 +105,11 @@ export interface CategorySpendingRowProps {
 
 export interface MonthlySpendingProps {
   trends: MonthlySpendingTrend[];
+}
+
+export interface SpendingChartProps {
+  trends: SpendingBucket[];
+  formatLabel?: (value: string) => string;
 }
 
 export interface MonthlySpendingTableProps extends MonthlySpendingProps {

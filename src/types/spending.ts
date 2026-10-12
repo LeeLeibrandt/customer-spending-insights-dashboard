@@ -49,6 +49,11 @@ export interface MonthlySpendingTrend {
   averageTransaction: number;
 }
 
+export interface SpendingBucket {
+  month: string;
+  totalSpent: number;
+}
+
 export interface SpendingTrendsResponse {
   trends: MonthlySpendingTrend[];
 }
