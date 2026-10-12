@@ -40,12 +40,29 @@ describe('OverviewView', () => {
     expect(within(card).getByText('Groceries')).toBeInTheDocument();
   });
 
-  it('shows monthly spending with a table alternative', async () => {
+  it('updates the spending graph and table for the selected period', async () => {
     renderOverview();
 
+    const table = await screen.findByRole('table', {
+      name: 'Spending over time',
+    });
+    expect(within(table).getAllByRole('row')).toHaveLength(6);
+
+    await selectOption('Period', 'Last 7 days');
+
+    await waitFor(() =>
+      expect(
+        within(
+          screen.getByRole('table', { name: 'Spending over time' }),
+        ).getAllByRole('row'),
+      ).toHaveLength(8),
+    );
+    expect(screen.getByText('Last 7 days · daily')).toBeInTheDocument();
     expect(
-      await screen.findByRole('table', { name: 'Monthly spending' }),
-    ).toBeInTheDocument();
+      recorder.urls.some((url) =>
+        url.includes('transactions?startDate=2024-09-10&endDate=2024-09-16'),
+      ),
+    ).toBe(true);
   });
 
   it('shows recent transactions and links to all transactions', async () => {
@@ -70,5 +87,21 @@ describe('OverviewView', () => {
         recorder.urls.some((url) => url.includes('summary?period=90d')),
       ).toBe(true),
     );
+  });
+
+  it('shows the full year without losing the overview', async () => {
+    renderOverview();
+
+    await selectOption('Period', 'Last year');
+
+    const table = await screen.findByRole('table', {
+      name: 'Spending over time',
+    });
+    await waitFor(() =>
+      expect(within(table).getAllByRole('row')).toHaveLength(14),
+    );
+    expect(
+      screen.getByRole('region', { name: 'Spending by category' }),
+    ).toBeInTheDocument();
   });
 });

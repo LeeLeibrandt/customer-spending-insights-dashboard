@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
 import { colors } from '../../styles/colors';
-import type { MonthlySpendingProps } from '../../types/components';
+import type { SpendingChartProps } from '../../types/components';
 import {
   formatAxisCurrency,
   formatCurrency,
@@ -24,7 +24,8 @@ const formatTick = (value: number) =>
 
 export const MonthlySpendingChart = memo(function MonthlySpendingChart({
   trends,
-}: MonthlySpendingProps) {
+  formatLabel = formatMonth,
+}: SpendingChartProps) {
   return (
     <Box sx={monthlySpendingChartStyles.chart} aria-hidden="true">
       <LineChart
@@ -35,7 +36,7 @@ export const MonthlySpendingChart = memo(function MonthlySpendingChart({
           {
             scaleType: 'point',
             data: trends.map(({ month }) => month),
-            valueFormatter: formatMonth,
+            valueFormatter: formatLabel,
           },
         ]}
         yAxis={[{ valueFormatter: formatTick, width: 72 }]}

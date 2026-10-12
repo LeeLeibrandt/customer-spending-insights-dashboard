@@ -7,8 +7,7 @@ import { useFilters } from '../../hooks/useFilters';
 import type { OverviewViewProps } from '../../types/components';
 import { DEFAULT_PERIOD } from '../../utils/periods';
 import { CategorySpendingCard } from '../spending/CategorySpendingCard';
-import { MonthlySpendingCard } from '../spending/MonthlySpendingCard';
-import { DEFAULT_TREND_MONTHS } from '../spending/monthOptions';
+import { PeriodSpendingCard } from '../spending/PeriodSpendingCard';
 import { overviewStyles } from './overviewStyles';
 import { RecentTransactionsCard } from './RecentTransactionsCard';
 import { SpendingSummaryCards } from './SpendingSummaryCards';
@@ -41,7 +40,7 @@ export function OverviewView({
       />
       <SpendingSummaryCards period={period} />
       <Box sx={overviewStyles.contentGrid}>
-        <MonthlySpendingCard months={DEFAULT_TREND_MONTHS} />
+        <PeriodSpendingCard key={period} period={period} />
         <CategorySpendingCard query={categoryQuery} />
         <Box sx={overviewStyles.fullWidth}>
           <RecentTransactionsCard onViewAll={onViewTransactions} />
