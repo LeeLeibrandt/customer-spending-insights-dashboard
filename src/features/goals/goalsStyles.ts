@@ -11,6 +11,7 @@ export const goalsStyles = {
   },
   amounts: {
     display: 'flex',
+    flexWrap: 'wrap',
     alignItems: 'center',
     gap: 1,
   },

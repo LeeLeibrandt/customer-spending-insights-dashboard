@@ -4,6 +4,13 @@ import { lineClasses } from '@mui/x-charts/LineChart';
 export const MONTHLY_SPENDING_GRADIENT_ID = 'monthly-spending-gradient';
 
 export const monthlySpendingChartStyles = {
+  viewport: {
+    overflowX: 'auto',
+    '&:focus-visible': {
+      outline: '2px solid currentColor',
+      outlineOffset: 2,
+    },
+  },
   chart: {
     [`& .${lineClasses.area}`]: {
       fill: `url(#${MONTHLY_SPENDING_GRADIENT_ID})`,

@@ -51,7 +51,7 @@ export function CustomerSummary() {
         onClose={() => setAnchorElement(null)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        slotProps={{ paper: { 'aria-label': 'Your profile' } }}
+        slotProps={{ paper: { role: 'dialog', 'aria-label': 'Your profile' } }}
       >
         <CustomerProfileDetails profile={profile} />
       </Popover>
