@@ -17,7 +17,12 @@ export const TransactionsTable = memo(function TransactionsTable({
   transactions,
 }: TransactionsTableProps) {
   return (
-    <Box sx={componentStyles.tableContainer}>
+    <Box
+      sx={componentStyles.tableContainer}
+      role="region"
+      aria-label="Transactions table"
+      tabIndex={0}
+    >
       <Table size="small">
         <TableHead>
           <TableRow>

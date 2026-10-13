@@ -124,7 +124,7 @@ export const layoutStyles = {
     flexGrow: 1,
     minWidth: 0,
     px: { xs: 2, md: 4 },
-    pb: 4,
+    pb: { xs: 'calc(80px + env(safe-area-inset-bottom, 0px))', md: 4 },
   },
   contentOffset: {
     minHeight: HEADER_HEIGHT,

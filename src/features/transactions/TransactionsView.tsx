@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import type { ChangeEvent } from 'react';
 import SortOutlined from '@mui/icons-material/SortOutlined';
 import { TablePagination, Typography } from '@mui/material';
+import { componentStyles } from '../../components/componentStyles';
 import { PageHeader } from '../../components/layout/PageHeader';
 import { RequestContent } from '../../components/RequestContent';
 import { SectionCard } from '../../components/SectionCard';
@@ -119,6 +120,7 @@ export function TransactionsView({ title, description }: ViewProps) {
               )}
               <TablePagination
                 component="div"
+                sx={componentStyles.pagination}
                 count={data.pagination.total}
                 page={page}
                 rowsPerPage={pageSize}

@@ -38,7 +38,7 @@ describe('App', () => {
 
     fireEvent.click(await screen.findByRole('button', { name: /John Doe/ }));
 
-    const profile = await screen.findByRole('presentation');
+    const profile = await screen.findByRole('dialog', { name: 'Your profile' });
     expect(within(profile).getByText('Premium')).toBeInTheDocument();
     expect(within(profile).getByText('Lifetime spent')).toBeInTheDocument();
   });

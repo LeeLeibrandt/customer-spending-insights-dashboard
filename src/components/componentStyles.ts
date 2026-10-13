@@ -52,6 +52,7 @@ export const componentStyles = {
   },
   selectField: {
     minWidth: 200,
+    width: { xs: '100%', sm: 'auto' },
   },
   filterBar: {
     display: 'flex',
@@ -63,6 +64,7 @@ export const componentStyles = {
     display: 'flex',
     flexWrap: 'wrap',
     gap: 2,
+    width: { xs: '100%', sm: 'auto' },
   },
   clearDatesButton: {
     height: 40,
@@ -70,6 +72,7 @@ export const componentStyles = {
   },
   dateField: {
     minWidth: 170,
+    width: { xs: '100%', sm: 'auto' },
   },
   selectFieldIcon: {
     color: 'text.secondary',
@@ -78,12 +81,13 @@ export const componentStyles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 2,
-    p: 2.5,
+    p: { xs: 2, sm: 2.5 },
     border: `1px solid ${colors.border}`,
     borderRadius: 3,
   },
   sectionCardHeader: {
     display: 'flex',
+    flexWrap: 'wrap',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     gap: 2,
@@ -128,6 +132,24 @@ export const componentStyles = {
   },
   tableContainer: {
     overflowX: 'auto',
+    '&:focus-visible': {
+      outline: `2px solid ${colors.brand.redStrong}`,
+      outlineOffset: 2,
+    },
+  },
+  pagination: {
+    '& .MuiTablePagination-toolbar': {
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      gap: 1,
+      px: { xs: 0, sm: 2 },
+    },
+    '& .MuiTablePagination-spacer': {
+      display: { xs: 'none', sm: 'block' },
+    },
+    '& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows': {
+      m: 0,
+    },
   },
   tableHeadCell: {
     color: 'text.secondary',

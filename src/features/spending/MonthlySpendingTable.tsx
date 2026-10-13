@@ -25,6 +25,9 @@ export const MonthlySpendingTable = memo(function MonthlySpendingTable({
           ? componentStyles.tableContainer
           : componentStyles.visuallyHidden
       }
+      role={isVisible ? 'region' : undefined}
+      aria-label={isVisible ? 'Monthly spending table' : undefined}
+      tabIndex={isVisible ? 0 : undefined}
     >
       <Table size="small" aria-label="Monthly spending">
         <TableHead>
