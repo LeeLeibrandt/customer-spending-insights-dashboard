@@ -45,8 +45,6 @@ export const MonthlySpendingChart = memo(function MonthlySpendingChart({
             ),
           },
         ]}
-        aria-hidden="true"
-        inert
       >
         <LineChart
           height={CHART_HEIGHT}
