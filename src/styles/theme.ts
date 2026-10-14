@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import '@mui/x-date-pickers/themeAugmentation';
 import { colors } from './colors';
 
 export const theme = createTheme({
@@ -28,6 +29,28 @@ export const theme = createTheme({
       fontSize: '1.75rem',
       fontWeight: 600,
       letterSpacing: '-0.01em',
+    },
+  },
+  components: {
+    MuiPickerDay: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+          '&:hover': {
+            backgroundColor: colors.brand.redTint,
+          },
+          '&.Mui-selected, &.Mui-selected:hover, &.Mui-selected:focus': {
+            backgroundColor: colors.brand.redStrong,
+            color: colors.text.onRed,
+            fontWeight: 600,
+          },
+          '&.MuiPickerDay-today:not(.Mui-selected)': {
+            outline: 'none',
+            color: colors.brand.redStrong,
+            fontWeight: 600,
+          },
+        },
+      },
     },
   },
 });

@@ -5,6 +5,7 @@ import { createHandlers } from '../../../mocks/handlers';
 import { renderWithTheme } from '../../renderWithTheme';
 import { recordRequests } from '../../requestRecorder';
 import { server } from '../../server';
+import { getDateInput } from '../../dateInput';
 
 describe('CategoriesView', () => {
   let recorder: ReturnType<typeof recordRequests>;
@@ -31,10 +32,10 @@ describe('CategoriesView', () => {
       screen.queryByRole('button', { name: 'Clear dates' }),
     ).not.toBeInTheDocument();
 
-    fireEvent.change(screen.getByLabelText('From'), {
+    fireEvent.change(getDateInput('From'), {
       target: { value: '2024-08-01' },
     });
-    fireEvent.change(screen.getByLabelText('To'), {
+    fireEvent.change(getDateInput('To'), {
       target: { value: '2024-08-31' },
     });
 
@@ -51,7 +52,7 @@ describe('CategoriesView', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Clear dates' }));
 
-    expect(screen.getByLabelText('From')).toHaveValue('');
+    expect(getDateInput('From')).toHaveValue('');
     expect(
       screen.getByText(
         'Choose a period, or set both dates for a custom range.',
