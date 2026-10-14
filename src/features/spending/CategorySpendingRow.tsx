@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { CategoryIcon } from '../../components/CategoryIcon';
 import { ProgressBar } from '../../components/ProgressBar';
-import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
+import { useCustomer } from '../../hooks/useCustomer';
 import type { CategorySpendingRowProps } from '../../types/components';
 import {
   formatCount,
@@ -14,6 +14,7 @@ import { spendingStyles } from './spendingStyles';
 export const CategorySpendingRow = memo(function CategorySpendingRow({
   category,
 }: CategorySpendingRowProps) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
   return (
     <Box component="li" sx={spendingStyles.categoryRow}>
       <CategoryIcon icon={category.icon} color={category.color} />

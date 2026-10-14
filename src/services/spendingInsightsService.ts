@@ -17,8 +17,6 @@ import { getJson } from './httpClient';
 
 export const DASHBOARD_CUSTOMER_ID = '12345';
 
-export const DASHBOARD_CURRENCY = 'ZAR';
-
 function customerPath(customerId: string): string {
   return `/customers/${encodeURIComponent(customerId)}`;
 }

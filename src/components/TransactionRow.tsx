@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Box, TableCell, TableRow, Typography } from '@mui/material';
-import { DASHBOARD_CURRENCY } from '../services/spendingInsightsService';
+import { useCustomer } from '../hooks/useCustomer';
 import type { TransactionRowProps } from '../types/components';
 import { toIsoDateFromTimestamp } from '../utils/dates';
 import { formatCurrency, formatDate } from '../utils/formatters';
@@ -10,6 +10,7 @@ import { componentStyles } from './componentStyles';
 export const TransactionRow = memo(function TransactionRow({
   transaction,
 }: TransactionRowProps) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
   return (
     <TableRow>
       <TableCell sx={componentStyles.noWrap}>
