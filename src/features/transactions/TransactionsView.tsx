@@ -37,9 +37,10 @@ export function TransactionsView({ title, description }: ViewProps) {
   const categoryOptions = useMemo(
     () => [
       { value: ALL_CATEGORIES, label: 'All categories' },
-      ...(filters?.categories ?? []).map(({ name }) => ({
-        value: name,
-        label: name,
+      ...(filters?.categories ?? []).map((category) => ({
+        value: category.name,
+        label: category.name,
+        category,
       })),
     ],
     [filters],

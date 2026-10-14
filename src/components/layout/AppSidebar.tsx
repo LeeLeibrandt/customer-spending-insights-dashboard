@@ -33,7 +33,7 @@ export const AppSidebar = memo(function AppSidebar({
         <Box sx={layoutStyles.brand}>
           <Box
             component="img"
-            src="/favicon.svg"
+            src="/favicon.svg?v=5"
             alt=""
             sx={layoutStyles.brandMark}
           />

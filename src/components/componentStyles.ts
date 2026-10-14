@@ -105,6 +105,11 @@ export const componentStyles = {
     borderRadius: 2,
     bgcolor: colors.iconSurface,
   },
+  selectOption: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1.5,
+  },
   progressTrack: {
     height: 6,
     my: 0.75,
