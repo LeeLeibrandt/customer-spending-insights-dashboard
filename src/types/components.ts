@@ -63,6 +63,7 @@ export interface SpendingSummaryCardsProps {
 export interface SelectOption<T extends string> {
   value: T;
   label: string;
+  category?: SpendingCategory;
 }
 
 export interface SelectFieldProps<T extends string> {
@@ -164,7 +165,7 @@ export interface TransactionFiltersProps {
 
 export interface ProgressBarProps {
   value: number;
-  color: string;
+  color?: string;
 }
 
 export interface GoalStatusLabelProps {
