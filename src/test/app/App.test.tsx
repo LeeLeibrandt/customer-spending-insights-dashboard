@@ -14,7 +14,10 @@ describe('App', () => {
     renderWithTheme(<App />);
 
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Spending insights' }),
+      await screen.findByRole('heading', {
+        level: 1,
+        name: 'Spending insights',
+      }),
     ).toBeInTheDocument();
     expect(await screen.findByText('John Doe')).toBeInTheDocument();
     expect(

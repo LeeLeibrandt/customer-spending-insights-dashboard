@@ -6,6 +6,7 @@ import { renderWithTheme } from '../../renderWithTheme';
 import { recordRequests } from '../../requestRecorder';
 import { selectOption } from '../../selectOption';
 import { server } from '../../server';
+import { getDateInput } from '../../dateInput';
 
 describe('TransactionsView', () => {
   let recorder: ReturnType<typeof recordRequests>;
@@ -70,10 +71,11 @@ describe('TransactionsView', () => {
       <TransactionsView title="Transactions" description="All of them" />,
     );
 
-    fireEvent.change(await screen.findByLabelText('From'), {
+    await screen.findByRole('group', { name: 'From' });
+    fireEvent.change(getDateInput('From'), {
       target: { value: '2024-09-10' },
     });
-    fireEvent.change(screen.getByLabelText('To'), {
+    fireEvent.change(getDateInput('To'), {
       target: { value: '2024-09-01' },
     });
 

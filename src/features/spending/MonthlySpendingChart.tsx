@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Box } from '@mui/material';
 import { LineChart } from '@mui/x-charts/LineChart';
-import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
+import { useCustomer } from '../../hooks/useCustomer';
 import { colors } from '../../styles/colors';
 import type { SpendingChartProps } from '../../types/components';
 import {
@@ -18,16 +18,15 @@ const CHART_HEIGHT = 280;
 const MIN_CHART_WIDTH = 360;
 const WIDTH_PER_POINT = 44;
 
-const formatSpent = (value: number | null) =>
-  value === null ? '' : formatCurrency(value, DASHBOARD_CURRENCY);
-
-const formatTick = (value: number) =>
-  formatAxisCurrency(value, DASHBOARD_CURRENCY);
-
 export const MonthlySpendingChart = memo(function MonthlySpendingChart({
   trends,
   formatLabel = formatMonth,
 }: SpendingChartProps) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
+  const formatSpent = (value: number | null) =>
+    value === null ? '' : formatCurrency(value, DASHBOARD_CURRENCY);
+  const formatTick = (value: number) =>
+    formatAxisCurrency(value, DASHBOARD_CURRENCY);
   return (
     <Box
       sx={monthlySpendingChartStyles.viewport}

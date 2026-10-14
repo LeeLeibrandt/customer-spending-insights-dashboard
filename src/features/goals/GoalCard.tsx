@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { CategoryIcon } from '../../components/CategoryIcon';
 import { ProgressBar } from '../../components/ProgressBar';
 import { SectionCard } from '../../components/SectionCard';
-import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
+import { useCustomer } from '../../hooks/useCustomer';
 import type { GoalCardProps } from '../../types/components';
 import {
   formatCount,
@@ -17,6 +17,7 @@ export const GoalCard = memo(function GoalCard({
   goal,
   category,
 }: GoalCardProps) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
   return (
     <SectionCard
       title={goal.category}

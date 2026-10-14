@@ -3,8 +3,8 @@ import { Box, Typography } from '@mui/material';
 import { RequestContent } from '../../components/RequestContent';
 import { SectionCard } from '../../components/SectionCard';
 import { useApiRequest } from '../../hooks/useApiRequest';
+import { useCustomer } from '../../hooks/useCustomer';
 import {
-  DASHBOARD_CURRENCY,
   DASHBOARD_CUSTOMER_ID,
   getSpendingByCategory,
 } from '../../services/spendingInsightsService';
@@ -14,6 +14,7 @@ import { CategorySpendingRow } from './CategorySpendingRow';
 import { spendingStyles } from './spendingStyles';
 
 export function CategorySpendingCard({ query }: CategorySpendingCardProps) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
   const { period, startDate, endDate } = query;
   const requestCategories = useCallback(
     (signal: AbortSignal) =>

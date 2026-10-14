@@ -6,7 +6,7 @@ A responsive React and TypeScript dashboard for exploring a customer's spending.
 
 The app calls seven customer spending endpoints through `src/services/`. Mock Service Worker (MSW) answers those requests in the browser and tests, so no backend is needed. The responses come from one transaction history in `src/mocks/`, keeping totals consistent across views. Components in `src/features/` display the responses; shared controls, types, and formatting helpers live in `src/components/`, `src/types/`, and `src/utils/`.
 
-The mock customer uses ZAR, formatted for `en-ZA`. The profile total is a lifetime figure and goals use the current month. Quick periods drive the overview summary; custom date ranges are scoped to the Categories and Transactions views. Monthly trend length is selected separately.
+Values are formatted for `en-ZA` using the currency from the customer profile response. The profile total is a lifetime figure and goals use the current month. Quick periods drive the overview summary; custom date ranges are scoped to the Categories and Transactions views. Monthly trend length is selected separately.
 
 ## Requirements
 

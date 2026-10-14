@@ -8,7 +8,7 @@ import {
   TableRow,
 } from '@mui/material';
 import { componentStyles } from '../../components/componentStyles';
-import { DASHBOARD_CURRENCY } from '../../services/spendingInsightsService';
+import { useCustomer } from '../../hooks/useCustomer';
 import type { MonthlySpendingTableProps } from '../../types/components';
 import { formatCurrency, formatMonth } from '../../utils/formatters';
 
@@ -18,6 +18,7 @@ export const MonthlySpendingTable = memo(function MonthlySpendingTable({
   trends,
   isVisible = false,
 }: MonthlySpendingTableProps) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
   return (
     <Box
       sx={

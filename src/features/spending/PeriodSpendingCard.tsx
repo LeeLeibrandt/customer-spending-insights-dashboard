@@ -12,8 +12,8 @@ import { componentStyles } from '../../components/componentStyles';
 import { RequestContent } from '../../components/RequestContent';
 import { SectionCard } from '../../components/SectionCard';
 import { useApiRequest } from '../../hooks/useApiRequest';
+import { useCustomer } from '../../hooks/useCustomer';
 import {
-  DASHBOARD_CURRENCY,
   DASHBOARD_CUSTOMER_ID,
   getSpendingByCategory,
   getTransactions,
@@ -46,6 +46,7 @@ const PERIOD_LABELS: Record<Period, string> = {
 };
 
 export function PeriodSpendingCard({ period }: { period: Period }) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
   const requestSpending = useCallback(
     async (signal: AbortSignal) => {
       const { dateRange } = await getSpendingByCategory(

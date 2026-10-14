@@ -8,8 +8,8 @@ import { componentStyles } from '../../components/componentStyles';
 import { RequestContent } from '../../components/RequestContent';
 import { StatCard } from '../../components/StatCard';
 import { useApiRequest } from '../../hooks/useApiRequest';
+import { useCustomer } from '../../hooks/useCustomer';
 import {
-  DASHBOARD_CURRENCY,
   DASHBOARD_CUSTOMER_ID,
   getSpendingSummary,
 } from '../../services/spendingInsightsService';
@@ -34,6 +34,7 @@ const summarySkeleton = (
 );
 
 export function SpendingSummaryCards({ period }: SpendingSummaryCardsProps) {
+  const { currency: DASHBOARD_CURRENCY } = useCustomer();
   const requestSummary = useCallback(
     (signal: AbortSignal) =>
       getSpendingSummary(DASHBOARD_CUSTOMER_ID, { period }, signal),

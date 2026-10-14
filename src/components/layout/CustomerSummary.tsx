@@ -2,20 +2,13 @@ import { useId, useState } from 'react';
 import type { MouseEvent } from 'react';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { Avatar, Button, Popover, Typography } from '@mui/material';
-import { useApiRequest } from '../../hooks/useApiRequest';
-import {
-  DASHBOARD_CUSTOMER_ID,
-  getCustomerProfile,
-} from '../../services/spendingInsightsService';
+import { useCustomer } from '../../hooks/useCustomer';
 import { formatInitials } from '../../utils/formatters';
 import { CustomerProfileDetails } from './CustomerProfileDetails';
 import { layoutStyles } from './layoutStyles';
 
-const requestProfile = (signal: AbortSignal) =>
-  getCustomerProfile(DASHBOARD_CUSTOMER_ID, signal);
-
 export function CustomerSummary() {
-  const { data: profile } = useApiRequest(requestProfile);
+  const profile = useCustomer();
   const [anchorElement, setAnchorElement] = useState<HTMLElement | null>(null);
   const panelId = useId();
 
