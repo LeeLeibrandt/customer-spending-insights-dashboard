@@ -12,10 +12,8 @@ if (!rootElement) {
   throw new Error('The application root element could not be found.');
 }
 
-if (import.meta.env.DEV) {
-  const { startMocking } = await import('./mocks/browser');
-  await startMocking();
-}
+const { startMocking } = await import('./mocks/browser');
+await startMocking();
 
 createRoot(rootElement).render(
   <StrictMode>

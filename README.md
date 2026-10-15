@@ -2,35 +2,131 @@
 
 A responsive React and TypeScript dashboard for exploring a customer's spending. It includes an overview, category breakdown, monthly trends, filterable and paginated transactions, monthly goals, and a customer profile.
 
-## How it works
-
-The app calls seven customer spending endpoints through `src/services/`. Mock Service Worker (MSW) answers those requests in the browser and tests, so no backend is needed. The responses come from one transaction history in `src/mocks/`, keeping totals consistent across views. Components in `src/features/` display the responses; shared controls, types, and formatting helpers live in `src/components/`, `src/types/`, and `src/utils/`.
-
-Values are formatted for `en-ZA` using the currency from the customer profile response. The profile total is a lifetime figure and goals use the current month. Quick periods drive the overview summary; custom date ranges are scoped to the Categories and Transactions views. Monthly trend length is selected separately.
-
 ## Requirements
 
-- Node.js 24 or later and npm.
-- Docker, to build and run the container.
+- Node.js 24 or later (npm is included with Node.js)
+- Docker only if you want to run the containerized build
 
-## Run locally
+No environment variables or backend service are required. The application uses Mock Service Worker (MSW) to provide its API responses in local and containerized builds.
+
+## Start the application locally
+
+Follow these steps in order:
+
+1. Install Node.js 24 or later. Confirm that Node.js and npm are available:
+
+   ```bash
+   node --version
+   npm --version
+   ```
+
+2. Open a terminal and change to the project directory:
+
+   ```bash
+   cd "Customer Spending Insights Dashboard"
+   ```
+
+   Skip this step if your terminal is already open in the project directory.
+
+3. Install the exact dependency versions from `package-lock.json`:
+
+   ```bash
+   npm ci
+   ```
+
+4. Start the Vite development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the URL printed in the terminal, normally `http://localhost:5173`.
+
+The first visit may reload once while the mock service worker takes control of the page. Keep the terminal running while using the application. Press `Ctrl+C` in that terminal to stop the server.
+
+## Run the production build locally
 
 ```bash
-npm ci
-npm run dev
+npm run build
+npm run preview
 ```
 
-Open the local URL printed by Vite, usually `http://localhost:5173`.
+Open the URL printed by Vite, normally `http://localhost:4173`.
 
-## Test
+## Run with Docker
+
+Follow these steps in order:
+
+1. Install and start Docker Desktop. Confirm that Docker is available:
+
+   ```bash
+   docker --version
+   ```
+
+2. Open a terminal and change to the project directory:
+
+   ```bash
+   cd "Customer Spending Insights Dashboard"
+   ```
+
+   Skip this step if your terminal is already open in the project directory.
+
+3. Build the Docker image:
+
+   ```bash
+   docker build -t customer-spending-insights-dashboard .
+   ```
+
+4. Start a container in the background:
+
+   ```bash
+   docker run --rm -d --name customer-spending-dashboard -p 8080:80 customer-spending-insights-dashboard
+   ```
+
+5. Open `http://127.0.0.1:8080` in your browser.
+
+6. When you are finished, stop the container:
+
+   ```bash
+   docker stop customer-spending-dashboard
+   ```
+
+The `-d` option keeps the container running in the background. The `--rm` option automatically removes it after `docker stop`.
+
+If port 8080 is already in use, replace `-p 8080:80` with `-p 8081:80` and open `http://127.0.0.1:8081` instead. Using `127.0.0.1` avoids local IPv6 or hostname-resolution issues that can affect `localhost` with Docker Desktop. The image builds the frontend with Node.js and serves it with nginx; no separate backend or local `npm install` is required.
+
+## Data and API behavior
+
+The dashboard calls seven same-origin endpoints under `/api/customers/12345`. MSW implements those endpoints from a single generated transaction history, so summaries, categories, trends, transactions, and goals remain consistent with one another. Dates are generated relative to the current date, which keeps the dashboard data current whenever it runs.
+
+Mock source files are in `src/mocks/`:
+
+- `customer.ts` contains the customer profile.
+- `transactions.ts` generates the transaction history.
+- `categories.ts` defines category labels, icons, and colors.
+- `goalBudgets.ts` contains monthly category budgets.
+- `dateRangePresets.ts` defines the available quick filters.
+- `handlers.ts` validates requests and calculates all endpoint responses.
+
+The complete endpoint contract is documented in [`docs/CustomerSpendingInsightsEndpoints.md`](docs/CustomerSpendingInsightsEndpoints.md).
+
+Values are formatted for the `en-ZA` locale using the currency returned by the customer profile. The profile total is a lifetime figure, while goals always use the current month. Quick periods drive the overview summary; custom date ranges apply to the Categories and Transactions views. The monthly trend length is selected separately.
+
+## Test and validate
+
+Run the automated test suite once:
 
 ```bash
 npm test
 ```
 
-Tests use Vitest, React Testing Library, MSW, and jsdom. Run `npm run test:watch` while editing. On machines where Vitest workers take a long time to start, run `npm test -- --pool=threads --maxWorkers=1 --no-file-parallelism`.
+Use `npm run test:watch` during development. If Vitest workers are slow to start on your machine, use:
 
-## Build and check
+```bash
+npm test -- --pool=threads --maxWorkers=1 --no-file-parallelism
+```
+
+Run all static checks and create a production build:
 
 ```bash
 npm run typecheck
@@ -39,11 +135,12 @@ npm run format:check
 npm run build
 ```
 
-## Run with Docker
+## Project structure
 
-```bash
-docker build -t customer-spending-insights-dashboard .
-docker run --rm -p 8080:80 customer-spending-insights-dashboard
-```
-
-Open `http://localhost:8080`. If port 8080 is already in use, replace the first port in the `docker run` command with a free host port and open that port instead. The container builds the frontend with Node.js and serves it with nginx.
+- `src/app/` assembles the application views.
+- `src/components/` contains reusable UI and layout components.
+- `src/features/` contains the overview, categories, trends, transactions, goals, and spending views.
+- `src/services/` contains the typed API client.
+- `src/types/` contains shared TypeScript models.
+- `src/utils/` contains date, money, formatting, and spending calculations.
+- `src/test/` contains Vitest and React Testing Library tests.
