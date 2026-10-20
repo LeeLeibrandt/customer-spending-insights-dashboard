@@ -20,7 +20,11 @@ function SelectFieldBase<T extends string>({
       onChange={(event) => onChange(event.target.value as T)}
       sx={componentStyles.selectField}
       slotProps={{
-        select: { displayEmpty: true },
+        select: {
+          displayEmpty: true,
+          renderValue: (selected) =>
+            options.find((option) => option.value === selected)?.label,
+        },
         inputLabel: { shrink: true },
         input: {
           startAdornment: Icon && (
