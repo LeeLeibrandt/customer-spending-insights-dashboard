@@ -1,5 +1,5 @@
 import type { SxProps, Theme } from '@mui/material/styles';
-import { colors } from '../styles/colors';
+import { colors } from './colors';
 
 export const componentStyles = {
   statCard: {

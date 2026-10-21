@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import type { PageHeaderProps } from '../../types/components';
-import { layoutStyles } from './layoutStyles';
+import { layoutStyles } from '../../styles/layoutStyles';
 
 export function PageHeader({ title, description, action }: PageHeaderProps) {
   return (

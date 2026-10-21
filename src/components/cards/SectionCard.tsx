@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import { Box, Typography } from '@mui/material';
-import type { SectionCardProps } from '../types/components';
-import { componentStyles } from './componentStyles';
+import type { SectionCardProps } from '../../types/components';
+import { componentStyles } from '../../styles/componentStyles';
 
 export function SectionCard({
   title,

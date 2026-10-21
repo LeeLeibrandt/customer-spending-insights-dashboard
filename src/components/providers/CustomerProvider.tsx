@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
-import { useApiRequest } from '../hooks/useApiRequest';
-import { CustomerContext } from '../hooks/useCustomer';
+import { useApiRequest } from '../../hooks/useApiRequest';
+import { CustomerContext } from '../../hooks/useCustomer';
 import {
   DASHBOARD_CUSTOMER_ID,
   getCustomerProfile,
-} from '../services/spendingInsightsService';
-import { CURRENCY_CODE_PATTERN } from '../utils/patterns';
-import { RequestContent } from './RequestContent';
+} from '../../services/spendingInsightsService';
+import { CURRENCY_CODE_PATTERN } from '../../utils/patterns';
+import { RequestContent } from '../request/RequestContent';
 
 async function requestProfile(signal: AbortSignal) {
   const profile = await getCustomerProfile(DASHBOARD_CUSTOMER_ID, signal);

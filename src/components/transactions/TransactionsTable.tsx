@@ -7,8 +7,8 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import type { TransactionsTableProps } from '../types/components';
-import { componentStyles } from './componentStyles';
+import type { TransactionsTableProps } from '../../types/components';
+import { componentStyles } from '../../styles/componentStyles';
 import { TransactionRow } from './TransactionRow';
 
 const COLUMNS = ['Date', 'Merchant', 'Category', 'Payment method'];

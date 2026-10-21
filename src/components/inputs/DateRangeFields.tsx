@@ -5,9 +5,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, { type Dayjs } from 'dayjs';
-import type { DateRangeFieldsProps } from '../types/components';
-import { isDateRangeReversed } from '../utils/periods';
-import { componentStyles } from './componentStyles';
+import type { DateRangeFieldsProps } from '../../types/components';
+import { isDateRangeReversed } from '../../utils/periods';
+import { componentStyles } from '../../styles/componentStyles';
 
 const RANGE_ERROR = 'Choose a start date on or before the end date.';
 const DATE_FORMAT = 'YYYY-MM-DD';

@@ -4,7 +4,7 @@ import type { DashboardLayoutProps } from '../../types/components';
 import type { DashboardView } from '../../types/enums';
 import { AppHeader } from './AppHeader';
 import { AppSidebar } from './AppSidebar';
-import { layoutStyles } from './layoutStyles';
+import { layoutStyles } from '../../styles/layoutStyles';
 
 export function DashboardLayout({
   activeView,

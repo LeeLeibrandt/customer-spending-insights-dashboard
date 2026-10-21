@@ -12,7 +12,7 @@ import {
 import {
   MONTHLY_SPENDING_GRADIENT_ID,
   monthlySpendingChartStyles,
-} from './monthlySpendingChartStyles';
+} from '../../styles/monthlySpendingChartStyles';
 
 const CHART_HEIGHT = 280;
 const MIN_CHART_WIDTH = 360;

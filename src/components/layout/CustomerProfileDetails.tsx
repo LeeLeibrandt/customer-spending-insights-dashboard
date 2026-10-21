@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import type { CustomerProfileDetailsProps } from '../../types/components';
 import { AccountType } from '../../types/enums';
 import { formatCurrency, formatDate } from '../../utils/formatters';
-import { layoutStyles } from './layoutStyles';
+import { layoutStyles } from '../../styles/layoutStyles';
 
 const ACCOUNT_TYPE_LABELS: Record<AccountType, string> = {
   [AccountType.Standard]: 'Standard',

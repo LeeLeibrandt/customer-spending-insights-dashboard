@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
 import CalendarTodayOutlined from '@mui/icons-material/CalendarTodayOutlined';
 import { Box, Typography } from '@mui/material';
-import { componentStyles } from '../../components/componentStyles';
-import { DateRangeFields } from '../../components/DateRangeFields';
+import { componentStyles } from '../../styles/componentStyles';
+import { DateRangeFields } from '../../components/inputs/DateRangeFields';
 import { PageHeader } from '../../components/layout/PageHeader';
-import { SelectField } from '../../components/SelectField';
+import { SelectField } from '../../components/inputs/SelectField';
 import { useDateRangeFilter } from '../../hooks/useDateRangeFilter';
 import { useFilters } from '../../hooks/useFilters';
 import type { ViewProps } from '../../types/components';
 import { DEFAULT_PERIOD } from '../../utils/periods';
 import { CategorySpendingCard } from '../spending/CategorySpendingCard';
-import { categoriesStyles } from './categoriesStyles';
+import { categoriesStyles } from '../../styles/categoriesStyles';
 
 export function CategoriesView({ title, description }: ViewProps) {
   const [period, setPeriod] = useState(DEFAULT_PERIOD);

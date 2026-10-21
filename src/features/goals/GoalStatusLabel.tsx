@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Box } from '@mui/material';
 import type { GoalStatusLabelProps } from '../../types/components';
 import { GOAL_STATUS_DETAILS } from './goalStatusDetails';
-import { goalsStyles } from './goalsStyles';
+import { goalsStyles } from '../../styles/goalsStyles';
 
 export const GoalStatusLabel = memo(function GoalStatusLabel({
   status,

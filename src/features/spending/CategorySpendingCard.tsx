@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
-import { RequestContent } from '../../components/RequestContent';
-import { SectionCard } from '../../components/SectionCard';
+import { RequestContent } from '../../components/request/RequestContent';
+import { SectionCard } from '../../components/cards/SectionCard';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { useCustomer } from '../../hooks/useCustomer';
 import {
@@ -11,7 +11,7 @@ import {
 import type { CategorySpendingCardProps } from '../../types/components';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import { CategorySpendingRow } from './CategorySpendingRow';
-import { spendingStyles } from './spendingStyles';
+import { spendingStyles } from '../../styles/spendingStyles';
 
 export function CategorySpendingCard({ query }: CategorySpendingCardProps) {
   const { currency: DASHBOARD_CURRENCY } = useCustomer();

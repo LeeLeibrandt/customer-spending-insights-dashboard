@@ -4,9 +4,9 @@ import CategoryOutlined from '@mui/icons-material/CategoryOutlined';
 import CreditCardOutlined from '@mui/icons-material/CreditCardOutlined';
 import SwapHoriz from '@mui/icons-material/SwapHoriz';
 import { Box, Skeleton } from '@mui/material';
-import { componentStyles } from '../../components/componentStyles';
-import { RequestContent } from '../../components/RequestContent';
-import { StatCard } from '../../components/StatCard';
+import { componentStyles } from '../../styles/componentStyles';
+import { RequestContent } from '../../components/request/RequestContent';
+import { StatCard } from '../../components/cards/StatCard';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { useCustomer } from '../../hooks/useCustomer';
 import {
@@ -15,7 +15,7 @@ import {
 } from '../../services/spendingInsightsService';
 import type { SpendingSummaryCardsProps } from '../../types/components';
 import { formatCurrency } from '../../utils/formatters';
-import { overviewStyles } from './overviewStyles';
+import { overviewStyles } from '../../styles/overviewStyles';
 
 const SUMMARY_CARD_COUNT = 4;
 const SUMMARY_CARD_HEIGHT = 148;

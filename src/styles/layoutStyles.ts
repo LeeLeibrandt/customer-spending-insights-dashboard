@@ -1,5 +1,5 @@
 import type { SxProps, Theme } from '@mui/material/styles';
-import { colors } from '../../styles/colors';
+import { colors } from './colors';
 
 const SIDEBAR_WIDTH = 240;
 const HEADER_HEIGHT = 64;

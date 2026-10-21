@@ -2,13 +2,13 @@ import { useMemo, useState } from 'react';
 import { Box } from '@mui/material';
 import { PageHeader } from '../../components/layout/PageHeader';
 import CalendarTodayOutlined from '@mui/icons-material/CalendarTodayOutlined';
-import { SelectField } from '../../components/SelectField';
+import { SelectField } from '../../components/inputs/SelectField';
 import { useFilters } from '../../hooks/useFilters';
 import type { OverviewViewProps } from '../../types/components';
 import { DEFAULT_PERIOD } from '../../utils/periods';
 import { CategorySpendingCard } from '../spending/CategorySpendingCard';
 import { PeriodSpendingCard } from '../spending/PeriodSpendingCard';
-import { overviewStyles } from './overviewStyles';
+import { overviewStyles } from '../../styles/overviewStyles';
 import { RecentTransactionsCard } from './RecentTransactionsCard';
 import { SpendingSummaryCards } from './SpendingSummaryCards';
 

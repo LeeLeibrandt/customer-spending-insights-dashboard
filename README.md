@@ -141,8 +141,16 @@ npm run build
 ## Project structure
 
 - `src/app/` assembles the application views.
-- `src/components/` contains reusable UI and layout components.
+- `src/components/` contains reusable components, grouped by purpose:
+  - `layout/` contains the dashboard shell, header, sidebar, and page header.
+  - `providers/` contains the customer profile provider.
+  - `request/` contains the loading and error states for API requests.
+  - `cards/` contains the section and stat cards.
+  - `inputs/` contains the select and date range fields.
+  - `indicators/` contains category icons, change indicators, and progress bars.
+  - `transactions/` contains the transactions table and its rows.
 - `src/features/` contains the overview, categories, trends, transactions, goals, and spending views.
+- `src/styles/` contains the theme, colours, global CSS, and every component and feature style file.
 - `src/services/` contains the typed API client.
 - `src/types/` contains shared TypeScript models.
 - `src/utils/` contains date, money, formatting, and spending calculations.

@@ -2,9 +2,9 @@ import { memo } from 'react';
 import TrendingDown from '@mui/icons-material/TrendingDown';
 import TrendingUp from '@mui/icons-material/TrendingUp';
 import { Box, Typography } from '@mui/material';
-import type { ChangeIndicatorProps } from '../types/components';
-import { formatPercentageChange } from '../utils/formatters';
-import { componentStyles } from './componentStyles';
+import type { ChangeIndicatorProps } from '../../types/components';
+import { formatPercentageChange } from '../../utils/formatters';
+import { componentStyles } from '../../styles/componentStyles';
 
 export const ChangeIndicator = memo(function ChangeIndicator({
   value,

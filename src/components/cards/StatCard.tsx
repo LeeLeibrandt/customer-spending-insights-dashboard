@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
-import type { StatCardProps } from '../types/components';
-import { ChangeIndicator } from './ChangeIndicator';
-import { componentStyles } from './componentStyles';
+import type { StatCardProps } from '../../types/components';
+import { ChangeIndicator } from '../indicators/ChangeIndicator';
+import { componentStyles } from '../../styles/componentStyles';
 
 const CHANGE_LABEL = 'vs previous period';
 
