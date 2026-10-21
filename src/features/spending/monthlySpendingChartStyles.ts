@@ -12,6 +12,9 @@ export const monthlySpendingChartStyles = {
     },
   },
   chart: {
+    '& .MuiChartsLayerContainer-root': {
+      touchAction: 'pan-x pan-y',
+    },
     [`& .${lineClasses.area}`]: {
       fill: `url(#${MONTHLY_SPENDING_GRADIENT_ID})`,
     },

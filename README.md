@@ -101,12 +101,15 @@ The dashboard calls seven same-origin endpoints under `/api/customers/12345`. MS
 
 Mock source files are in `src/mocks/`:
 
-- `customer.ts` contains the customer profile.
-- `transactions.ts` generates the transaction history.
-- `categories.ts` defines category labels, icons, and colors.
-- `goalBudgets.ts` contains monthly category budgets.
-- `dateRangePresets.ts` defines the available quick filters.
+- `browser.ts` starts the MSW service worker in development.
 - `handlers.ts` validates requests and calculates all endpoint responses.
+- `transactions.ts` generates the transaction history from the monthly sample transactions.
+- `data/` holds the static dummy data:
+  - `customer.ts` contains the customer profile.
+  - `monthlyTransactions.ts` contains one month of sample transactions.
+  - `categories.ts` defines category labels, icons, and colors.
+  - `goalBudgets.ts` contains monthly category budgets.
+  - `dateRangePresets.ts` defines the available quick filters.
 
 The complete endpoint contract is documented in [`docs/CustomerSpendingInsightsEndpoints.md`](docs/CustomerSpendingInsightsEndpoints.md).
 

@@ -1,5 +1,5 @@
-import { AccountType } from '../types/enums';
-import type { CustomerRecord } from '../types/customer';
+import { AccountType } from '../../types/enums';
+import type { CustomerRecord } from '../../types/customer';
 
 export const MOCK_CUSTOMER: CustomerRecord = {
   customerId: '12345',

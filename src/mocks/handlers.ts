@@ -28,10 +28,10 @@ import {
   filterTransactionsByDate,
   findTopCategory,
 } from '../utils/spendingCalculations';
-import { MOCK_CATEGORIES } from './categories';
-import { MOCK_CUSTOMER } from './customer';
-import { MOCK_DATE_RANGE_PRESETS } from './dateRangePresets';
-import { MOCK_GOAL_BUDGETS } from './goalBudgets';
+import { MOCK_CATEGORIES } from './data/categories';
+import { MOCK_CUSTOMER } from './data/customer';
+import { MOCK_DATE_RANGE_PRESETS } from './data/dateRangePresets';
+import { MOCK_GOAL_BUDGETS } from './data/goalBudgets';
 import { createMockTransactions } from './transactions';
 
 const CUSTOMER_PATH = '/api/customers/:customerId';
