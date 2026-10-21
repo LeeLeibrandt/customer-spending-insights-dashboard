@@ -80,10 +80,10 @@ Follow these steps in order:
 4. Start a container in the background:
 
    ```bash
-   docker run --rm -d --name customer-spending-dashboard -p 8080:80 customer-spending-insights-dashboard
+   docker run --rm -d --name customer-spending-dashboard -p 8081:80 customer-spending-insights-dashboard
    ```
 
-5. Open `http://127.0.0.1:8080` in your browser.
+5. Open `http://127.0.0.1:8081` in your browser.
 
 6. When you are finished, stop the container:
 
@@ -93,7 +93,7 @@ Follow these steps in order:
 
 The `-d` option keeps the container running in the background. The `--rm` option automatically removes it after `docker stop`.
 
-If port 8080 is already in use, replace `-p 8080:80` with `-p 8081:80` and open `http://127.0.0.1:8081` instead. Using `127.0.0.1` avoids local IPv6 or hostname-resolution issues that can affect `localhost` with Docker Desktop. The image builds the frontend with Node.js and serves it with nginx; no separate backend or local `npm install` is required.
+If port 8081 is already in use, replace `-p 8081:80` with `-p 8082:80` and open `http://127.0.0.1:8082` instead. Using `127.0.0.1` avoids local IPv6 or hostname-resolution issues that can affect `localhost` with Docker Desktop. The image builds the frontend with Node.js and serves it with nginx; no separate backend or local `npm install` is required.
 
 ## Data and API behavior
 
