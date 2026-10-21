@@ -23,7 +23,7 @@ Follow these steps in order:
 2. Open a terminal and change to the project directory:
 
    ```bash
-   cd "Customer Spending Insights Dashboard"
+   cd customer-spending-insights-dashboard
    ```
 
    Skip this step if your terminal is already open in the project directory.
@@ -66,7 +66,7 @@ Follow these steps in order:
 2. Open a terminal and change to the project directory:
 
    ```bash
-   cd "Customer Spending Insights Dashboard"
+   cd customer-spending-insights-dashboard
    ```
 
    Skip this step if your terminal is already open in the project directory.

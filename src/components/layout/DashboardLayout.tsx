@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import type { DashboardLayoutProps } from '../../types/components';
 import type { DashboardView } from '../../types/enums';
@@ -12,6 +12,10 @@ export function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
   const [isNavigationOpen, setIsNavigationOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeView]);
 
   const openNavigation = useCallback(() => setIsNavigationOpen(true), []);
   const closeNavigation = useCallback(() => setIsNavigationOpen(false), []);
