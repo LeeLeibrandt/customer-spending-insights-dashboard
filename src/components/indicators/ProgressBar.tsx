@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Box } from '@mui/material';
-import type { ProgressBarProps } from '../types/components';
-import { componentStyles } from './componentStyles';
+import type { ProgressBarProps } from '../../types/components';
+import { componentStyles } from '../../styles/componentStyles';
 
 const MAX_PERCENTAGE = 100;
 

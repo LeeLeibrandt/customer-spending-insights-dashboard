@@ -1,0 +1,77 @@
+import { PaymentMethod } from '../../types/enums';
+import type { MockTransactionRecord } from '../../types/transactions';
+
+export const MONTHLY_TRANSACTIONS: MockTransactionRecord[] = [
+  {
+    daysAgo: 1,
+    merchant: 'Pick n Pay',
+    category: 'Groceries',
+    amount: 245.8,
+    description: 'Weekly groceries',
+    paymentMethod: PaymentMethod.CreditCard,
+  },
+  {
+    daysAgo: 4,
+    merchant: 'Vodacom',
+    category: 'Utilities',
+    amount: 399,
+    description: 'Mobile contract',
+    paymentMethod: PaymentMethod.DebitOrder,
+  },
+  {
+    daysAgo: 8,
+    merchant: 'Engen',
+    category: 'Transportation',
+    amount: 612.4,
+    description: 'Fuel',
+    paymentMethod: PaymentMethod.DebitCard,
+  },
+  {
+    daysAgo: 12,
+    merchant: 'Netflix',
+    category: 'Entertainment',
+    amount: 199,
+    description: 'Monthly subscription',
+    paymentMethod: PaymentMethod.DebitOrder,
+  },
+  {
+    daysAgo: 15,
+    merchant: "Nando's",
+    category: 'Dining',
+    amount: 168.5,
+    description: 'Lunch',
+    paymentMethod: PaymentMethod.CreditCard,
+  },
+  {
+    daysAgo: 18,
+    merchant: 'Takealot',
+    category: 'Shopping',
+    amount: 489,
+    description: 'Online order',
+    paymentMethod: PaymentMethod.CreditCard,
+  },
+  {
+    daysAgo: 22,
+    merchant: 'Woolworths Food',
+    category: 'Groceries',
+    amount: 312.45,
+    description: 'Fresh produce',
+    paymentMethod: PaymentMethod.DebitCard,
+  },
+  {
+    daysAgo: 25,
+    merchant: 'Uber',
+    category: 'Transportation',
+    amount: 86.2,
+    description: 'Ride',
+    paymentMethod: PaymentMethod.CreditCard,
+  },
+  {
+    daysAgo: 27,
+    merchant: 'Mugg & Bean',
+    category: 'Dining',
+    amount: 124.9,
+    description: 'Coffee and breakfast',
+    paymentMethod: PaymentMethod.CreditCard,
+  },
+];

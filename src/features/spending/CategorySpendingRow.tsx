@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { CategoryIcon } from '../../components/CategoryIcon';
-import { ProgressBar } from '../../components/ProgressBar';
+import { CategoryIcon } from '../../components/indicators/CategoryIcon';
+import { ProgressBar } from '../../components/indicators/ProgressBar';
 import { useCustomer } from '../../hooks/useCustomer';
 import type { CategorySpendingRowProps } from '../../types/components';
 import {
@@ -9,7 +9,7 @@ import {
   formatCurrency,
   formatPercentage,
 } from '../../utils/formatters';
-import { spendingStyles } from './spendingStyles';
+import { spendingStyles } from '../../styles/spendingStyles';
 
 export const CategorySpendingRow = memo(function CategorySpendingRow({
   category,

@@ -1,5 +1,5 @@
-import { Period } from '../types/enums';
-import type { DateRangePreset } from '../types/filters';
+import { Period } from '../../types/enums';
+import type { DateRangePreset } from '../../types/filters';
 
 export const MOCK_DATE_RANGE_PRESETS: DateRangePreset[] = [
   { label: 'Last 7 days', value: Period.SevenDays },

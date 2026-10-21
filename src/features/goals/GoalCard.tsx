@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { CategoryIcon } from '../../components/CategoryIcon';
-import { ProgressBar } from '../../components/ProgressBar';
-import { SectionCard } from '../../components/SectionCard';
+import { CategoryIcon } from '../../components/indicators/CategoryIcon';
+import { ProgressBar } from '../../components/indicators/ProgressBar';
+import { SectionCard } from '../../components/cards/SectionCard';
 import { useCustomer } from '../../hooks/useCustomer';
 import type { GoalCardProps } from '../../types/components';
 import {
@@ -11,7 +11,7 @@ import {
   formatPercentage,
 } from '../../utils/formatters';
 import { GoalStatusLabel } from './GoalStatusLabel';
-import { goalsStyles } from './goalsStyles';
+import { goalsStyles } from '../../styles/goalsStyles';
 
 export const GoalCard = memo(function GoalCard({
   goal,

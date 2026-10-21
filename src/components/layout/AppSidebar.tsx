@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import type { Theme } from '@mui/material/styles';
 import type { AppSidebarProps } from '../../types/components';
-import { layoutStyles } from './layoutStyles';
+import { layoutStyles } from '../../styles/layoutStyles';
 import { NAVIGATION_ITEMS } from './navigationItems';
 
 export const AppSidebar = memo(function AppSidebar({

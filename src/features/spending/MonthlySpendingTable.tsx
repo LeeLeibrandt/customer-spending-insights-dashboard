@@ -7,7 +7,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { componentStyles } from '../../components/componentStyles';
+import { componentStyles } from '../../styles/componentStyles';
 import { useCustomer } from '../../hooks/useCustomer';
 import type { MonthlySpendingTableProps } from '../../types/components';
 import { formatCurrency, formatMonth } from '../../utils/formatters';

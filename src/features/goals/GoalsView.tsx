@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { PageHeader } from '../../components/layout/PageHeader';
-import { RequestContent } from '../../components/RequestContent';
+import { RequestContent } from '../../components/request/RequestContent';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { useFilters } from '../../hooks/useFilters';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../services/spendingInsightsService';
 import type { ViewProps } from '../../types/components';
 import { GoalCard } from './GoalCard';
-import { goalsStyles } from './goalsStyles';
+import { goalsStyles } from '../../styles/goalsStyles';
 
 const requestGoals = (signal: AbortSignal) =>
   getSpendingGoals(DASHBOARD_CUSTOMER_ID, signal);

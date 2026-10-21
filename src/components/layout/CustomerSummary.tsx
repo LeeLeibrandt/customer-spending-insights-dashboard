@@ -5,7 +5,7 @@ import { Avatar, Button, Popover, Typography } from '@mui/material';
 import { useCustomer } from '../../hooks/useCustomer';
 import { formatInitials } from '../../utils/formatters';
 import { CustomerProfileDetails } from './CustomerProfileDetails';
-import { layoutStyles } from './layoutStyles';
+import { layoutStyles } from '../../styles/layoutStyles';
 
 export function CustomerSummary() {
   const profile = useCustomer();

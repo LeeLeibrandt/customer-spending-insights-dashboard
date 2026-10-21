@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { Box, TableCell, TableRow, Typography } from '@mui/material';
-import { useCustomer } from '../hooks/useCustomer';
-import type { TransactionRowProps } from '../types/components';
-import { toIsoDateFromTimestamp } from '../utils/dates';
-import { formatCurrency, formatDate } from '../utils/formatters';
-import { CategoryIcon } from './CategoryIcon';
-import { componentStyles } from './componentStyles';
+import { useCustomer } from '../../hooks/useCustomer';
+import type { TransactionRowProps } from '../../types/components';
+import { toIsoDateFromTimestamp } from '../../utils/dates';
+import { formatCurrency, formatDate } from '../../utils/formatters';
+import { CategoryIcon } from '../indicators/CategoryIcon';
+import { componentStyles } from '../../styles/componentStyles';
 
 export const TransactionRow = memo(function TransactionRow({
   transaction,

@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material';
-import { RequestContent } from '../../components/RequestContent';
-import { SectionCard } from '../../components/SectionCard';
-import { TransactionsTable } from '../../components/TransactionsTable';
+import { RequestContent } from '../../components/request/RequestContent';
+import { SectionCard } from '../../components/cards/SectionCard';
+import { TransactionsTable } from '../../components/transactions/TransactionsTable';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import {
   DASHBOARD_CUSTOMER_ID,

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import DateRangeOutlined from '@mui/icons-material/DateRangeOutlined';
 import { PageHeader } from '../../components/layout/PageHeader';
-import { SelectField } from '../../components/SelectField';
+import { SelectField } from '../../components/inputs/SelectField';
 import type { ViewProps } from '../../types/components';
 import { MonthlySpendingCard } from '../spending/MonthlySpendingCard';
 import { DEFAULT_TREND_MONTHS, MONTH_OPTIONS } from '../spending/monthOptions';

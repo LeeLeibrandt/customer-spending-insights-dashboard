@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 import type { AppHeaderProps } from '../../types/components';
 import { CustomerSummary } from './CustomerSummary';
-import { layoutStyles } from './layoutStyles';
+import { layoutStyles } from '../../styles/layoutStyles';
 
 export const AppHeader = memo(function AppHeader({
   onOpenNavigation,

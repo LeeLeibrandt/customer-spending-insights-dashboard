@@ -7,9 +7,9 @@ import ShoppingBagOutlined from '@mui/icons-material/ShoppingBagOutlined';
 import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined';
 import type { SvgIconComponent } from '@mui/icons-material';
 import { Box } from '@mui/material';
-import type { CategoryIconProps } from '../types/components';
-import { CategoryIcon as CategoryIconName } from '../types/enums';
-import { componentStyles } from './componentStyles';
+import type { CategoryIconProps } from '../../types/components';
+import { CategoryIcon as CategoryIconName } from '../../types/enums';
+import { componentStyles } from '../../styles/componentStyles';
 
 const CATEGORY_ICONS: Record<CategoryIconName, SvgIconComponent> = {
   [CategoryIconName.ShoppingCart]: ShoppingCartOutlined,

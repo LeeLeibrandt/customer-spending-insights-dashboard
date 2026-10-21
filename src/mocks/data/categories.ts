@@ -1,5 +1,5 @@
-import type { SpendingCategory } from '../types/categories';
-import { CategoryIcon } from '../types/enums';
+import type { SpendingCategory } from '../../types/categories';
+import { CategoryIcon } from '../../types/enums';
 
 export const MOCK_CATEGORIES: SpendingCategory[] = [
   { name: 'Groceries', color: '#FF6B6B', icon: CategoryIcon.ShoppingCart },

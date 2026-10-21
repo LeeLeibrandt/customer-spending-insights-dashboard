@@ -8,9 +8,9 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { componentStyles } from '../../components/componentStyles';
-import { RequestContent } from '../../components/RequestContent';
-import { SectionCard } from '../../components/SectionCard';
+import { componentStyles } from '../../styles/componentStyles';
+import { RequestContent } from '../../components/request/RequestContent';
+import { SectionCard } from '../../components/cards/SectionCard';
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { useCustomer } from '../../hooks/useCustomer';
 import {

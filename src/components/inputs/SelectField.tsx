@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { InputAdornment, MenuItem, TextField } from '@mui/material';
-import type { SelectFieldProps } from '../types/components';
-import { CategoryIcon } from './CategoryIcon';
-import { componentStyles } from './componentStyles';
+import type { SelectFieldProps } from '../../types/components';
+import { CategoryIcon } from '../indicators/CategoryIcon';
+import { componentStyles } from '../../styles/componentStyles';
 
 function SelectFieldBase<T extends string>({
   label,
@@ -20,7 +20,11 @@ function SelectFieldBase<T extends string>({
       onChange={(event) => onChange(event.target.value as T)}
       sx={componentStyles.selectField}
       slotProps={{
-        select: { displayEmpty: true },
+        select: {
+          displayEmpty: true,
+          renderValue: (selected) =>
+            options.find((option) => option.value === selected)?.label,
+        },
         inputLabel: { shrink: true },
         input: {
           startAdornment: Icon && (

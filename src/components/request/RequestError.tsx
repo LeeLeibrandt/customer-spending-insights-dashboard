@@ -1,5 +1,5 @@
 import { Alert, Button } from '@mui/material';
-import type { RequestErrorProps } from '../types/components';
+import type { RequestErrorProps } from '../../types/components';
 
 export function RequestError({ message, onRetry }: RequestErrorProps) {
   return (

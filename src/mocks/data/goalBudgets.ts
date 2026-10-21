@@ -1,4 +1,4 @@
-import type { SpendingGoalBudget } from '../types/goals';
+import type { SpendingGoalBudget } from '../../types/goals';
 
 export const MOCK_GOAL_BUDGETS: SpendingGoalBudget[] = [
   { id: 'goal_001', category: 'Entertainment', monthlyBudget: 300 },

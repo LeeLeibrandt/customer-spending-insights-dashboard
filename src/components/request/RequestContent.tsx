@@ -1,6 +1,6 @@
 import { Skeleton } from '@mui/material';
-import type { RequestContentProps } from '../types/components';
-import { componentStyles } from './componentStyles';
+import type { RequestContentProps } from '../../types/components';
+import { componentStyles } from '../../styles/componentStyles';
 import { RequestError } from './RequestError';
 
 const DEFAULT_SKELETON_HEIGHT = 320;
