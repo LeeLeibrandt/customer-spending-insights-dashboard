@@ -20,5 +20,10 @@ export function useDateRangeFilter(onApply?: () => void) {
     [onApply],
   );
 
-  return { dateRange, appliedDateRange, changeDateRange };
+  const clearDateRange = useCallback(
+    () => changeDateRange(EMPTY_DATE_RANGE),
+    [changeDateRange],
+  );
+
+  return { dateRange, appliedDateRange, changeDateRange, clearDateRange };
 }

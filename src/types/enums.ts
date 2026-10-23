@@ -5,6 +5,10 @@ export enum Period {
   OneYear = '1y',
 }
 
+export enum PeriodSelection {
+  CustomRange = 'custom',
+}
+
 export enum CategoryIcon {
   ShoppingCart = 'shopping-cart',
   Film = 'film',
