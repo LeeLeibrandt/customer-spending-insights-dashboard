@@ -32,6 +32,16 @@ export const theme = createTheme({
     },
   },
   components: {
+    MuiTextField: {
+      defaultProps: {
+        color: 'secondary',
+      },
+    },
+    MuiPickersTextField: {
+      defaultProps: {
+        color: 'secondary',
+      },
+    },
     MuiPickerDay: {
       styleOverrides: {
         root: {
